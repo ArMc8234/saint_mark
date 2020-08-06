@@ -1,0 +1,38 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: beige !important;
+
+}
+.parallax {
+  background-image: url(../images/StMarkBldg.jpg);
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+  text-align: center;
+  /* position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0; */
+}
+#intro {
+  background-color: plum;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+  text-align: center;
+  color: white;
+  /* position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0; */
+}
+a {
+  color: #00B7FF;
+}
