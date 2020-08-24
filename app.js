@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+// const model = require('./models');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -22,6 +24,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+//Set up Mongo Database
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useUnifiedTopology", true);
+
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/stMark")
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+  
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
