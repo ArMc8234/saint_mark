@@ -2,23 +2,7 @@ extends layout
 
 
 block content
-  nav.navbar.navbar-expand-lg(style='background-color: #D9E5F2')
-    a.navbar-brand(href='https://www.ucc.org/' target="_blank")
-      img(src="https://d3n8a8pro7vhmx.cloudfront.net/unitedchurchofchrist/pages/52/attachments/original/1540995080/UCC-Logo-2018-uccwebheader.png?1540995080" style='width: 300px' alt="United Church of Christ")
-    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
-      span.navbar-toggler-icon
-    #navbarNav.collapse.navbar-collapse
-      ul.navbar-nav
-        li.nav-item.active
-          a.nav-link(href='#')
-            | About Us 
-            span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='#') Events
-        li.nav-item
-          a.nav-link(href='#') Gallery
-        //- li.nav-item
-        //-   a.nav-link.disabled(href='#', tabindex='-1', aria-disabled='true') Disabled
+  include navbar
   .parallax
     div.containParallax
       h1= title
@@ -36,7 +20,24 @@ block content
     In volutpat, quam at mollis ultricies, diam nisi rhoncus nibh, ultricies venenatis justo magna et diam. Aliquam erat volutpat. Fusce ullamcorper dictum risus, pretium facilisis metus viverra in. Pellentesque ullamcorper turpis at libero dignissim, placerat vulputate metus pellentesque. Proin mattis, arcu et euismod semper, est nulla suscipit urna, tempor tristique felis tellus eget leo. Aliquam ornare dolor enim. Fusce at tellus efficitur, pretium turpis quis, pulvinar mi. Sed sollicitudin, nulla sit amet laoreet luctus, eros odio congue ligula, et venenatis lacus velit sit amet nulla. Duis sed enim enim. Nunc ante est, egestas at dolor a, faucibus eleifend ligula. Morbi efficitur leo dolor, at sollicitudin eros laoreet quis. Mauris a consequat leo. Sed commodo turpis eu massa gravida, lobortis vulputate purus congue. Mauris et pharetra lacus. Suspendisse quis porttitor eros, eget venenatis erat. Aenean elementum nunc purus, a cursus dolor hendrerit lobortis.
 
     Fusce at dui nunc. Etiam sollicitudin augue ac mi pretium, non euismod erat facilisis. Suspendisse lectus erat, tempus eget ligula at, tempus consectetur justo. Sed congue, mi quis tempor interdum, risus elit pulvinar odio, lacinia condimentum leo libero sit amet mauris. Suspendisse vel auctor metus, sed venenatis turpis. Aliquam posuere vel metus vel aliquet. Nam molestie nisl vel quam tempor, ut malesuada tortor scelerisque. Praesent quis pellentesque eros. Vestibulum est tellus, eleifend et eros dapibus, varius maximus eros. Nunc ut ex finibus, tempus nisi ac, vulputate diam. Praesent fermentum, lorem non malesuada condimentum, quam ligula tristique mi, sed euismod tortor eros in sapien. Etiam faucibus volutpat justo, eu efficitur ante elementum at.
-
+  
+  #activities
+    #activitiesTable
+      if {events}
+        h2 Announcements
+        table
+          tr
+            th Date
+            th Start Time
+            th End Time
+            th Title
+          each event in events
+            tr
+              td #{event.date}
+              td #{event.start}
+              td #{event.end}
+              td #{event.title}
+              
 
     
   #location

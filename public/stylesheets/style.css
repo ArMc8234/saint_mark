@@ -30,7 +30,7 @@ body {
   background: rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
-  min-height: 50vh;
+  min-height: 68vh;
 }
 .video-bg {
   position: absolute;
@@ -80,4 +80,27 @@ a {
   bottom:0;
   right:0;
   left:0; */
+}
+#activities{
+  text-align: center;
+  padding: 10px;
+}
+
+table{
+  width: 50%;
+  margin: 50px auto;
+}
+th, td {
+  text-align: center;
+  padding: 8px;
+  font-family: sans-serif;
+}
+
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #396AA2;
+  font-weight: bold;
 }
