@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  include navbar
+  .main.container.row
+    .col-md-6.col-md-offset-3
+      h1.display-4.m-b-2 Enter events!
+
+      // register form
+      form(method='POST' action='api/events')
+        div.form-group
+          label(for='title') Event Title:
+          input#title.form-control(type='text', placeholder='title' name='title')
+        div.form-group
+          label(for='date') Date:
+          input#date.form-control(type='text', placeholder='date' name='date')
+        div.form-group
+          label(for='start') Start Time:
+          input#start.form-control(type='text', placeholder='starting time' name='start')
+        div.form-group
+          label(for='end') End Time:
+          input#end.form-control(type='ending time' name='end')
+        div.form-group
+          label(for='description') Description:
+          input#description.form-control(type='text' name='description')
+        button.btn.btn-primary(type='submit') Submit
