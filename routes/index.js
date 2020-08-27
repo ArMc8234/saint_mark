@@ -9,7 +9,7 @@ var announcements = require('../controllers/eventsController');
 router.get('/', function(req, res, next) {
  db.Event.find({})
      .then(function(dbEvent) {
-       res.render('index', { title: "Saint Mark United Church of Christ", events: dbEvent })
+       res.render('index', { title: "Saint Mark United Church of Christ", events: dbEvent, moment: require('moment') })
 
      }).catch(err => console.log(err));
 });
