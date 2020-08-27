@@ -33,10 +33,11 @@ block content
             th Title
           each event in events
             tr
-              td #{event.date}
+              td= moment(event.date).format("MM/DD/YY")
               td #{event.start}
               td #{event.end}
-              td #{event.title}
+              td
+               a(href="/api/events#{event.id}" data-toggle="modal" data-target="#exampleModal") #{event.title}
               
 
     
@@ -47,3 +48,18 @@ block content
     p Call (757) 545-5527
     img(src="https://www.mapdevelopers.com/geocode_tool.php?lat=36.8293311&lng=-76.2692443")
     a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX") Facebook
+    
+
+  // Modal
+  #exampleModal.modal(tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5#exampleModalLabel.modal-title Modal title
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") ×
+        .modal-body
+          //- | ... #{event.description}
+        .modal-footer
+          button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+          button.btn.btn-primary(type="button") Save changes
