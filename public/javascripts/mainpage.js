@@ -4,11 +4,13 @@
 $(document).ready(function(){
     //set  document to listen for <td> hyperlink click and call for the event description linked to the same ID as the event title"
    $(document).on('click', "#eventLink",  function(){
-      let currentEvent = $(this).attr('data-attr');
+      let currentTitle = $(this).html();
+      let currentDescription = $(this).attr('data-attr');
      
-      console.log(currentEvent);
+      $(".modal-title").empty();
       $(".modal-body").empty();
-      $(".modal-body").append("<p>" + currentEvent + "</p>");
+      $(".modal-title").append("<h4>" + currentTitle + "</h4>");
+      $(".modal-body").append("<p>" + currentDescription + "</p>");
     //   eventsController.findById()
       // .then(function(data) {
       //     console.log("Got the data:", data);
