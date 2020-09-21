@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     
    
-    $('.btn').on('click', function (event) {
+    $('#submit').on('click', function (event) {
         event.preventDefault();
 
         
@@ -20,11 +20,26 @@ $(document).ready(function () {
           data: newEvent,
         }).then(function (data) {
           console.log(data);
-          location.reload(true);
+          // location.reload(true);
         });
         console.log("Form Data Sent");
   
-  
+      });
+
+      //select the edit button to change an event
+      $(document).on('click','#edit', function(){
+        console.log("Edit Selected!");
+        // //get the event's db ID
+        // var thisId = $(this).event.id;
+
+        // //create input fields for each field of the event
+        // $.ajax({
+        //   method: "GET",
+        //   url: "api/events" + thisId
+        // }).then(function(data){
+        //   console.log("You clicked this event", data.title)
+        });
+        //select the delete button to remove a event
     });
   
   
@@ -32,4 +47,4 @@ $(document).ready(function () {
   
   
   
-  });
+  

@@ -37,7 +37,7 @@ block content
               td #{event.start}
               td #{event.end}
               td
-               a(href="/api/events#{event.id}" data-toggle="modal" data-target="#exampleModal") #{event.title}
+               a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title}
               
 
     

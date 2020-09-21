@@ -3,11 +3,11 @@ extends layout
 block content
   include navbar
   .main.container.row
-    .col-md-6.col-md-offset-3
+    .col-md-6.offset-4
       h1.display-4.m-b-2 Enter events!
 
       // register form
-      form(method='POST' action='api/events')
+      form
         div.form-group
           label(for='title') Event Title:
           input#title.form-control(type='text', placeholder='title' name='title')
@@ -23,4 +23,28 @@ block content
         div.form-group
           label(for='description') Description:
           input#description.form-control(type='text' name='description')
-        button.btn.btn-primary(type='submit') Submit
+        div#action-button
+          button.btn.btn-primary#submit(type='submit') Submit
+
+  #activities
+    #activitiesTable
+      if {events}
+        h2 Saved Events
+        table
+          tr
+            th Date
+            th Start Time
+            th End Time
+            th Title
+            th
+          each event in events
+            tr
+              td= moment(event.date).format("MM/DD/YY")
+              td #{event.start}
+              td #{event.end}
+              td
+               a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title} 
+              td
+                button#edit.btn.btn-outline-primary(type="#" value= (event.id)) Update
+                span 
+                button.btn.btn-outline-danger(type="#" value="delete") Delete
