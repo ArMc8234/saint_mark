@@ -4,9 +4,11 @@ block content
     include navbar
     #uploadForm
         br
-        input(type="file")
-        br
-        img#myImg(src="#" alt="your image" height="250" width="250")
+        form(action="api/upload" method="post" enctype="multipart/form-data")
+            input(type="file" name="image")
+            br
+            img#myImg(src="#" alt="your image" height="250" width="250")
+            div#imageButton
 
 
 

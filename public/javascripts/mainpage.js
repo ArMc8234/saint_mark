@@ -58,14 +58,17 @@ $(document).ready(function(){
               var img = document.querySelector("#myImg");  // $('img')[0]
               img.src = URL.createObjectURL(this.files[0]); // set src to blob url
               img.onload = imageIsLoaded;
+              $("#imageButton").html("<button id='make-new'>Submit</button>");
           }
       });
     });
 
     function imageIsLoaded() { 
-      alert(this.src);  // blob url
+      confirm("Would you like to upload " +  this.src);  // blob url
       // update width and height ...
   }
+  
+
 
     //select the edit button to change an event
     $(document).on('click','#edit', function(){
@@ -86,6 +89,20 @@ $(document).ready(function(){
         $('#description').val(data.description);
         $('#action-button').html("<button id='updater' data-id='" + data._id + "'>Update</button>")
       });
+    });
+    //select the delet button to change an event
+    $(document).on('click','#delete', function(){
+      console.log("Delete Selected!");
+      //get the event's db ID
+      var thisId = $(this).val();
+      console.log("ThisID:", thisId);
+      // create input fields for each field of the event
+      $.ajax({
+        method: "DELETE",
+        url: "api/events/" + thisId
+      }).then(function(data){
+        console.log("You deleted this event", data._id);
+     });
     });
 
     // When user click's update button, update the specific note
@@ -126,7 +143,9 @@ $(document).on("click", "#updater", function() {
 
 });
       //select the delete button to remove a event
-      
+
+
+
 
 
   
