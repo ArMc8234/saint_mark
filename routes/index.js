@@ -22,6 +22,15 @@ router.get('/events', function(req, res, next) {
  }).catch(err => console.log(err));
 });
 
+//GET the Gallery form page
+router.get('/gallery', function(req, res, next) {
+  db.Gallery.find({})
+  .then(function(dbGallery) {
+   res.render('gallery', { title: "Gallery", galleries: dbGallery })
+ }).catch(err => console.log(err));
+//  console.table(dbGallery)
+});
+
 router.get('/imageUploader', function(req, res, next) {
   res.render('imageUpload', { title: "ImageUpload" });
 });

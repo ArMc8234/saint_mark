@@ -51,23 +51,121 @@ $(document).ready(function(){
     //   });
   
     }); 
+    //Selects the form input field, then makes it invisible
+    const gallery = document.querySelector('#previewGallery');
+    // gallery.style.opacity = 0; 
 
     window.addEventListener('load', function() {
       document.querySelector('input[type="file"]').addEventListener('change', function() {
-          if (this.files && this.files[0]) {
-              var img = document.querySelector("#myImg");  // $('img')[0]
-              img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-              img.onload = imageIsLoaded;
-              $("#imageButton").html("<button id='make-new'>Submit</button>");
+          console.table("files:", this.files);
+          // if (this.files && this.files[0]) {
+          //     var img = document.querySelector("#myImg");  // $('img')[0]
+          //     img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          //     img.onload = imageIsLoaded;
+          //     $("#imageButton").html("<button id='make-new'>Submit</button>");
+          // }
+          if (this.files){
+            
+            for(i=0; i < this.files.length; i++){
+              var img = document.querySelector(".myImg-" + i);  // $('img')[0]
+                  img.src = URL.createObjectURL(this.files[i]);
+                  img.style.opacity = 1; // set src to blob url
+                  var nameToAdd = "/images/uploads/" + this.files[i].name;
+                  imageArray.push(nameToAdd);
+                  console.log(JSON.stringify(this.files[i]));
+                  // img.onload = imageIsLoaded;
+                  // $("#imageButton").html("<button id='make-new'>Submit</button>");
+              
+            //   newPic = $("<img class='myImg' height='250' width='250'>");
+              
+            //   newPic.src = URL.createObjectURL(this.files[i]);
+            //   $(newPic).attr("src", newPic.src);
+            //   // newPic.onload = imageIsLoaded;
+            //   console.log("Image" + [i] + ": ", newPic.src);
+            //   imageArray.push(newPic.src);
+            //   fileArray.push(this.files[i]);
+            //   newCard = $("<div>");
+            //   (newCard).append(newPic);
+            //   $("#previewGallery").append(newCard);
+            //   imageIsLoaded(newPic.src);
+             }
+             gallery.style.opacity = 1;
+             $("#imageButton").html("<button id='make-new'>Submit</button>");
           }
       });
     });
 
-    function imageIsLoaded() { 
-      confirm("Would you like to upload " +  this.src);  // blob url
-      // update width and height ...
-  }
+  //   function imageIsLoaded(item) { 
+  //     confirm("Would you like to upload " +  item);  // blob url
+  //     // update width and height ...
+  // }
   
+  const imageArray = [];
+  
+  const form = document.getElementsByTagName('form')[0];
+  form.addEventListener('submit', function() {
+    for(i=0; i< imageArray.length; i++){
+          var newUpload = {
+            imageURL: imageArray[i]
+            // date: date.now()
+            
+          }
+          $.ajax({
+            method: "POST",
+            url: "/api/galleries",
+            data: newUpload,
+          }).then(function (data) {
+            console.table(data);
+            // location.reload(true);
+          });
+          console.log("Gallery Data Sent");
+  }
+});
+  // const fileArray = [];
+
+  // $(document).on('click', '#make-new', function (event) {
+  //   event.preventDefault();
+
+   
+  //   // console.log("Ready to upload: ", newUpload);
+  //   for(i=0; i< imageArray.length; i++){
+  //     var newUpload = {
+  //       imageURL: imageArray[i]
+  //       // date: date.now()
+        
+  //     }
+  //     $.ajax({
+  //       method: "POST",
+  //       url: "/api/galleries",
+  //       data: newUpload,
+  //     }).then(function (data) {
+  //       console.table(data);
+  //       // location.reload(true);
+  //     });
+  //     console.log("Gallery Data Sent");
+
+  //   }
+
+  //   for(j=0; j < fileArray.length; j++) {
+  //     var newFile = fileArray[j];
+  //   let newFile = $('#newImages').val().trim();
+
+  //     $.ajax({
+  //       method: "POST",
+  //       url: "api/upload",
+  //       data:  newFile ,
+  //       processData: false,
+  //       contentType: false,
+  //       name: "image",
+  //       encType: "multipart/form-data",
+  //     }).then(function (data) {
+  //       console.table(data);
+  //       // location.reload(true);
+  //     });
+  //     console.log("Upload Data Sent", newFile);
+  //   }
+    
+  // }); 
 
 
     //select the edit button to change an event

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    include navbar
+    #gallery
+        if {galleries}
+          h2 Image Gallery
+          each gallery in galleries
+            ul(style="list-style-type: none; display: inline-block")
+               li 
+                  img(src=(gallery.imageURL) height="250" width="250")  
