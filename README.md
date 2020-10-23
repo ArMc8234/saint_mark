@@ -1,5 +1,6 @@
 # Saint Mark UCC Home Page
-```
+
+
 ![Demo](./public/images/StMarkDemo1.png)
 
 This is a the web page for church looking to enhance it's internet presence. It contains content describing the church's values, history, staff, images of past events, and a schedule of upcoming events.
