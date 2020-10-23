@@ -3,12 +3,14 @@
 
 ![Demo](./public/images/StMarkDemo1.png)
 
+
+## Summary
 This is a the web page for church looking to enhance it's internet presence. It contains content describing the church's values, history, staff, images of past events, and a schedule of upcoming events.
 
-### Event Schedule
+#### Event Schedule
 ![Demo](./public/images/StMarkDemo2.png)
 
-### Image Gallery
+#### Image Gallery
 ![Demo](./public/images/StMarkDemo3.png)
 
 ## Components and Dependencies
