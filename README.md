@@ -1,8 +1,14 @@
 #Saint Mark UCC Home Page
 ```
-![Demo](./public/images/StMarkDraft_ Oct 23, 2020 2_53 PM.mp4)
+![Demo](./public/images/StMarkDemo1)
 
 This is a the web page for church looking to enhance it's internet presence. It contains content describing the church's values, history, staff, images of past events, and a schedule of upcoming events.
+
+### Event Schedule
+![Demo](./public/images/StMarkDemo2)
+
+### Image Gallery
+![Demo](./public/images/StMarkDemo3)
 
 ## Components and Dependencies
 
