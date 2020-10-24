@@ -2,13 +2,12 @@ extends layout
 
 
 block content
-  include navbar
   .parallax
     div.containParallax
       h1= title
       h5 Welcome to #{title}
-      video.video-bg(autoplay='' muted='' loop='')
-        source(src='https://media.giphy.com/media/QmDiNBWHiPJSeae5Zo/giphy.mp4' type='video/mp4')
+      //- video.video-bg(autoplay='' muted='' loop='')
+      //-   source(src='https://media.giphy.com/media/QmDiNBWHiPJSeae5Zo/giphy.mp4' type='video/mp4')
 
   #intro
     br
