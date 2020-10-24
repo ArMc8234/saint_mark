@@ -5,7 +5,19 @@ body {
 
 }
 #navbar {
-  color: #D4F7D4
+  color: #396AA2
+}
+.navbar-toggler {
+  display: flex;
+  vertical-align: middle;
+  border-style: solid;
+  border-color: #396AA2;
+}
+.navbar-toggler-icon {
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  color: #396AA2;
 }
 .parallax {
   background-image: url(../images/StMarkBldg4.jpg);
@@ -32,14 +44,14 @@ body {
   overflow: hidden;
   min-height: 68vh;
 }
-.video-bg {
+/* .video-bg {
   position: absolute;
   z-index: -1;
   top: 0;
   left: 0;
   min-width: 100%;
   min-height: 100%;
-}
+} */
 
 #intro {
   background-color:#D9E5F2;
