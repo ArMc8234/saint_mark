@@ -79,7 +79,7 @@ a {
 }
 #location {
   background-color: #396AA2;
-  height: 500px;
+  height: auto;
   /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: center; 
@@ -87,7 +87,7 @@ a {
   text-align: center;
   color: #2E1017;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   /* top:0;
   bottom:0;
   right:0;
