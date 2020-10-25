@@ -19,9 +19,9 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-// use sessions for tracking logins
+// use sessions for tracking logins. The session data is in mongo instead of RAM. It keeps site from crashing.
 app.use(session({
-  secret: 'treehouse loves you',
+  secret: 'luck be on my side!',
   resave: true,
   saveUninitialized: false,
   store: new MongoStore({
