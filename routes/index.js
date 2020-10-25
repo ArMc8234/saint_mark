@@ -54,7 +54,8 @@ router.post('/login', function(req, res, next) {
   } else {
     var err = new Error('Email and password are required.');
     err.status = 401;
-    return next(err);
+    // return next(err);
+    return res.render('error', { error: next(err) });
   }
 });
 
@@ -74,7 +75,8 @@ router.post('/register', function(req, res, next) {
       if (req.body.password !== req.body.confirmPassword) {
         var err = new Error('Passwords do not match.');
         err.status = 400;
-        return next(err);
+        // return next(err);
+        return res.render('error', { error: next(err) });
       }
 
       // create object with form input
@@ -90,15 +92,16 @@ router.post('/register', function(req, res, next) {
           return next(error);
         } else {
           req.session.userId = user._id;
-          return res.send('Successful Post');
-          // return res.redirect('/events');
+          // return res.send('Successful Post');
+          return res.redirect('/profile');
         }
       });
 
     } else {
       var err = new Error('All fields required.');
       err.status = 400;
-      return next(err);
+      // return next(err);
+      return res.render('error', { error: next(err) });
     }
 })
 
