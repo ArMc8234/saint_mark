@@ -23,7 +23,10 @@ $(document).ready(function(){
       // location.reload(true);
     });
     console.log("Form Data Sent");
-
+    //empties the Event form fields
+    clearEventForm();
+    getResults();
+    $('#newEvents').empty();
   }); 
 
 
@@ -201,6 +204,8 @@ $(document).ready(function(){
       }).then(function(data){
         console.log("You deleted this event", data._id);
      });
+     $('#newEvents').empty();
+     getResults();
     });
 
     // When user click's update button, update the specific note
@@ -226,23 +231,57 @@ $(document).on("click", "#updater", function() {
     },
     // On successful call
     success: function(data) {
-      // Clear the inputs
-       $('#title').val("");
-       $('#date').val("");
-       $('#start').val("");
-       $('#end').val("");
-       $('#description').val("");
-      // Revert action button to submit
-      $("#action-button").html("<button id='make-new'>Submit</button>");
-      // Grab the results from the db again, to populate the DOM
-      // getResults();
+      //empties the Event form fields
+      clearEventForm();
     }
   });
+  getResults();
 
 });
+
+  function clearEventForm(){
+      // Clear the inputs
+      $('#title').val("");
+      $('#date').val("");
+      $('#start').val("");
+      $('#end').val("");
+      $('#description').val("");
+     // Revert action button to submit
+     $("#action-button").html("<button id='make-new'>Submit</button>");
+     // Grab the results from the db again, to populate the DOM
+
+  }
+
       //select the delete button to remove a event
 
-
+ function getResults(){
+  $.ajax({
+    method: "GET",
+    url: "api/events",
+  }).then(function(data){
+    console.log("Data after deletion!");
+    console.table(data);
+    $('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
+    for (i = 0; i < data.length; i++) {
+      //create event row
+      let date = new Date(data[i].date);
+      let newDate = new Intl.DateTimeFormat('en-Us').format(date);
+      let startTime = new Date(data[i].start);
+      let newStartTime = new Intl.DateTimeFormat('en-Us').format(startTime); 
+      console.log("new date: ", newDate);
+      console.log("ID ", data[i]._id);
+      let announcement = $('<tr><td>'+newDate+'</td>'+'<td>'+newStartTime+'</td>'+'<td>'+data[i].end+'</td>'+'<td>'+data[i].title+'</td>'+'<td>'+'<button class="btn btn-outline-primary" id="edit" type="#" value="'+data[i]._id+'"> Update </button><span> </span> <button class="btn btn-outline-danger" id="delete" type="#" value="'+data[i]._id+'"> Delete </button></tr>');
+    //append new event
+     $('#newEvents').append(announcement);
+    }
+    // $('#title').val(data.title);
+    // $('#date').val(data.date);
+    // $('#start').val(data.start);
+    // $('#end').val(data.end);
+    // $('#description').val(data.description);
+    // $('#action-button').html("<button id='updater' data-id='" + data._id + "'>Update</button>")
+  });
+ }
 
 
 
