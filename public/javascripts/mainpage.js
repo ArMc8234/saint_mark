@@ -2,7 +2,7 @@
   1. Main page event display
   2. Event page
   3. Image upload */
-
+  
   $(document).ready(function(){
 
   //==================== Main Page Event Display ======================
@@ -118,8 +118,18 @@
           url: "api/events/" + thisId
         }).then(function(data){
           console.log("You clicked this event", data._id);
+          //Changed format of date back to MM/DD/YY for display 
+          let date = new Date(data.date);
+          let newDate = new Intl.DateTimeFormat('en-Us', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+          }).format(date);
+          console.log("Date Control Date:", newDate);
+          //Change date field type from 'date' to 'text' to inject the date field
+          $('#date').attr('type', "text");
           $('#title').val(data.title);
-          $('#date').val(data.date);
+          $('#date').val(newDate);
           $('#start').val(data.start);
           $('#end').val(data.end);
           $('#description').val(data.description);
