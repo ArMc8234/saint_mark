@@ -32,9 +32,9 @@ block content
             th Title
           each event in events
             tr
-              td= moment(event.date).format("MM/DD/YY")
-              td #{event.start}
-              td #{event.end}
+              td= dayjs(event.date).format("M/D/YY")
+              td= dayjs('2020-01-01' + event.start).format("h:mm A")
+              td= dayjs('2020-01-01' + event.end).format("h:mm A")
               td
                a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title}
               

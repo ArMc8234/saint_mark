@@ -112,7 +112,7 @@ router.post('/register', function(req, res, next) {
 router.get('/', function(req, res, next) {
    db.Event.find({})
       .then(function(dbEvent) {
-       res.render('index', { title: "Saint Mark United Church of Christ", events: dbEvent, moment: require('moment') })
+       res.render('index', { title: "Saint Mark United Church of Christ", events: dbEvent, dayjs: require('dayjs') })
 
      }).catch(err => console.log(err));
 });
@@ -133,7 +133,7 @@ router.get('/events', mid.requiresLogin, function(req, res, next) {
         } else {
           db.Event.find({})
           .then(function(dbEvent) {
-          res.render('eventForm', { title: "Events", events: dbEvent, moment: require('moment') })
+          res.render('eventForm', { title: "Events", events: dbEvent, dayjs: require('dayjs') })
            }).catch(err => console.log(err));
         }
       });
