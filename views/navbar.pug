@@ -12,16 +12,18 @@ nav.navbar.navbar-expand-lg(style='background-color: #D9E5F2')
       li.nav-item
         a.nav-link(href='#') About Us
       li.nav-item
-        a.nav-link(href='/events') Events
-      li.nav-item
         a.nav-link(href='/gallery') Gallery
-      li.nav-item
-        a.nav-link(href='/imageUploader') Load Images
-      li.nav-item
-        a.nav-link(href='/register') Register
-      li.nav-item
-        a.nav-link(href='/login') Log In
-      li.nav-item
-        a.nav-link(href='/logout') Log Out
+      if !currentUser
+          li.nav-item
+            a.nav-link(href='/register') Register
+          li.nav-item
+            a.nav-link(href='/login') Log In
+      else   
+        li.nav-item
+          a.nav-link(href='/events') Add Events
+        li.nav-item
+          a.nav-link(href='/imageUploader') Load Images
+        li.nav-item
+          a.nav-link(href='/logout') Log Out
       //- li.nav-item
       //-   a.nav-link.disabled(href='#', tabindex='-1', aria-disabled='true') Disabled
