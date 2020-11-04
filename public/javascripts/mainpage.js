@@ -2,7 +2,8 @@
   1. Main page event display
   2. Event page
   3. Image upload */
-  
+  const fs = require('fs');
+
   $(document).ready(function(){
 
   //==================== Main Page Event Display ======================
@@ -309,9 +310,34 @@
   //   }
     
   // }); 
+  //================== Image Gallery =====================
 
+  /*Create the ability for an authorized user to delete images from the image gallery.
+    The images will be loaded to cards with an a-tag to open a larger version for viewing and a button to delete.
+    The delete function must destroy the database record containing the url and use File System's unlink function
+    to delete the image from the public folder. Maybe create a separate view for this?*/
 
- 
+    //select the delete button to remove an image
+    $(document).on('click','#imageDelete', function(){
+      console.log("Image Delete Selected!");
+      //get the image's db ID
+      var thisId = $(this).val();
+      var thisURL = $(this).attr('url')
+      console.log("Image ID:", thisId);
+      // Send delete request to database
+      $.ajax({
+        method: "DELETE",
+        url: "api/galleries/" + thisId
+      }).then(function(data){
+        console.log("You deleted this image", data._id);
+     });
+     //Delete image in the public folder
+      fs.unlinkSync(thisURL);
+     //Create ID for this image and empty it if deleted
+     $('#imageID_X').empty();
+     
+    });
+
 
 
 
