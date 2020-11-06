@@ -2,7 +2,7 @@
   1. Main page event display
   2. Event page
   3. Image upload */
-  const fs = require('fs');
+  // const fs = require('fs');
 
   $(document).ready(function(){
 
@@ -209,7 +209,7 @@
    //======================== Image Upload Page ================================== 
     //Selects the form input field, then makes it invisible
     const gallery = document.querySelector('#previewGallery');
-    // gallery.style.opacity = 0; 
+    gallery.style.opacity = 0; 
 
     window.addEventListener('load', function() {
       document.querySelector('input[type="file"]').addEventListener('change', function() {
@@ -223,12 +223,18 @@
           if (this.files){
             
             for(i=0; i < this.files.length; i++){
-              var img = document.querySelector(".myImg-" + i);  // $('img')[0]
+              // var img = document.querySelector(".myImg-" + i);  // $('img')[0]
+                  var img = $(`<img class="myImg-${i} rounded float-left" height='250' width='250'>`);
                   img.src = URL.createObjectURL(this.files[i]); // set src to blob url
-                  img.style.opacity = 1; 
+                  // img.style.opacity = 1; 
+                  $(img).attr("src", img.src);
                   var nameToAdd = "/images/uploads/" + this.files[i].name;
                   imageArray.push(nameToAdd);
+                  newCard = $('<div>');
+                  newCard.append(img);
+                  $('#previewGallery').append(newCard);
                   console.log(JSON.stringify(this.files[i]));
+                  console.log(nameToAdd);
                   // img.onload = imageIsLoaded;
                   // $("#imageButton").html("<button id='make-new'>Submit</button>");
               
@@ -246,7 +252,7 @@
             //   imageIsLoaded(newPic.src);
              }
              gallery.style.opacity = 1;
-             $("#imageButton").html("<button id='make-new'>Submit</button>");
+             $("#imageButton").html("</br></br><button id='make-new' type='button' class='btn btn-success btn-block'>Submit</button>");
           }
       });
     });
