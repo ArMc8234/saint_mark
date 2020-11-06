@@ -52,7 +52,19 @@
             console.log("newEndTime:", newEndTime);
             
             //Create row for the event to add to the Saved Events table
-            let announcement = $('<tr><td>'+ newDate +'</td>'+'<td>'+ newStartTime +'</td>'+'<td>'+ newEndTime +'</td>'+'<td>'+data[i].title+'</td>'+'<td>'+'<button class="btn btn-outline-primary" id="edit" type="#" value="'+data[i]._id+'"> Update </button><span> </span> <button class="btn btn-outline-danger" id="delete" type="#" value="'+data[i]._id+'"> Delete </button></tr>');
+            let announcement = $(`
+              <tr>
+                <td>${newDate}</td>
+                <td>${newStartTime}</td>
+                <td>${newEndTime}</td>
+                <td>${data[i].title}</td>
+                <td><button class="btn btn-outline-primary" id="edit" type="#" value="${data[i]._id}"> Update </button>
+                <span> </span>
+                <button class="btn btn-outline-danger" id="delete" type="#" value="${data[i]._id}"> Delete </button>
+              </tr>
+            `);
+            
+            
             //append new event
           $('#newEvents').append(announcement);
           }
