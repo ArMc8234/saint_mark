@@ -7,4 +7,11 @@ block content
           each gallery in galleries
             ul(style="list-style-type: none; display: inline-block")
                li 
-                  img(src=(gallery.imageURL) height="250" width="250")  
+                 .row
+                    .col-sm-12
+                      a(href=(gallery.imageURL) data-lightbox="gallery-set")
+                        img(src=(gallery.imageURL) height="250" width="250")
+                      if currentUser
+                        .row
+                          .col-sm-12   
+                            button.btn.btn-danger(type="button") Delete 
