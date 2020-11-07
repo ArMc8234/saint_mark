@@ -252,7 +252,7 @@
             //   imageIsLoaded(newPic.src);
              }
              gallery.style.opacity = 1;
-             $("#imageButton").html("</br></br><button id='make-new' type='button' class='btn btn-success btn-block'>Submit</button>");
+             $("#imageButton").html("<button id='make-new' class='btn btn-primary'>Submit</button>");
           }
       });
     });
