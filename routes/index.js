@@ -117,6 +117,10 @@ router.get('/', function(req, res, next) {
      }).catch(err => console.log(err));
 });
 
+// GET /staff
+router.get('/staff', function(req, res, next) {
+  return res.render('staff', { title: "Meet St. Mark's Staff" });
+});
 //GET the Event form page
 // router.get('/events', function(req, res, next) {
 //   db.Event.find({})
