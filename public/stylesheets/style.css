@@ -21,8 +21,7 @@ body {
 }
 .parallax {
   background-image: url(../images/StMarkBldg4.jpg);
-  
-  height: 500px;
+  height: 68vh;
   background-attachment: fixed;
   background-position: center; 
   background-repeat: no-repeat;
@@ -38,7 +37,6 @@ body {
 
 }
 .containParallax{
- 
   background: rgba(0, 0, 0, 0.25);
   position: relative;
   overflow: hidden;
@@ -55,7 +53,7 @@ body {
 
 #intro {
   background-color:#D9E5F2;
-  height: 500px;
+  height: 68vh;
   /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: center; 
@@ -63,7 +61,10 @@ body {
   text-align: center;
   color: #2E1017;
   position: relative;
-  overflow: hidden;
+  /* overflow: auto; */
+  content: "";
+  clear: both;
+  display: table;
   /* top:0;
   bottom:0;
   right:0;
@@ -93,11 +94,43 @@ body {
 .role-description {
   justify-content: left;
 }
-.staff-pic{
-  float: right;
-  margin-left: 15px;
-  box-shadow:  10px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+
+
+@media screen and (max-width: 600px){
+  #intro {
+    float: left; 
+    display:block;
+    width: 100%; 
+    overflow: auto;
+  }
+   
+  #activities {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+
+  .role-description {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+  .staffDescription {
+    text-align: center;
+    float: left;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+
+  #location {
+    float: right;
+    display: block;
+  }
 }
+
 
 .staffTitle {
   color: #2E1017;
@@ -130,6 +163,7 @@ a {
 #activities{
   text-align: center;
   padding: 10px;
+  
 }
 
 table{
