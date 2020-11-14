@@ -36,38 +36,38 @@
           $('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
           for (i = 0; i < data.length; i++) {
             //create event row
-            let date = new Date(data[i].date);
-            let newDate = new Intl.DateTimeFormat('en-Us').format(date);
-            console.log("time from database:", data[i].start);
-            let startTime = new Date('2020-01-01T'+ data[i].start );
-            let newStartTime = new Intl.DateTimeFormat('default', { 
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(startTime); 
-            console.log("newStartTime:", newStartTime);
+            // let date = new Date(data[i].date);
+            // let newDate = new Intl.DateTimeFormat('en-Us').format(date);
+            // console.log("time from database:", data[i].start);
+            // let startTime = new Date('2020-01-01T'+ data[i].start );
+            // let newStartTime = new Intl.DateTimeFormat('default', { 
+            //   hour: 'numeric',
+            //   minute: 'numeric',
+            // }).format(startTime); 
+            // console.log("newStartTime:", newStartTime);
   
-            //Convert the date and time format for display
-            let endTime = new Date('2020-01-01T'+ data[i].end );
-            let newEndTime = new Intl.DateTimeFormat('default', { 
-              hour: 'numeric',
-              minute: 'numeric',
-            }).format(endTime); 
-            console.log("newStartTime:", newStartTime);
-            console.log("newEndTime:", newEndTime);
+            // //Convert the date and time format for display
+            // let endTime = new Date('2020-01-01T'+ data[i].end );
+            // let newEndTime = new Intl.DateTimeFormat('default', { 
+            //   hour: 'numeric',
+            //   minute: 'numeric',
+            // }).format(endTime); 
+            // console.log("newStartTime:", newStartTime);
+            // console.log("newEndTime:", newEndTime);
             
             //Create row for the event to add to the Saved Events table
             let announcement = $(`
               <tr>
-                <td>${newDate}</td>
-                <td>${newStartTime}</td>
-                <td>${newEndTime}</td>
+                <td>${data[i].date}</td>
+                <td>${data[i].start}</td>
+                <td>${data[i].end}</td>
                 <td>${data[i].title}</td>
                 <td><button class="btn btn-outline-primary" id="edit" type="#" value="${data[i]._id}"> Update </button>
                 <span> </span>
                 <button class="btn btn-outline-danger" id="delete" type="#" value="${data[i]._id}"> Delete </button>
               </tr>
             `);
-            
+            console.table("announcements:", announcement);
             
             //append new event
           $('#newEvents').append(announcement);
@@ -84,14 +84,14 @@
           $('#end').val("");
           $('#description').val("");
         // Revert action button to submit
-        $("#action-button").html("<button id='make-new'>Submit</button>");
+        $("#action-button").html("<button id='submit'>Submit</button>");
         // Grab the results from the db again, to populate the DOM
   
       }
   
 
   //Add new event from event form    
-  $('#submit').on('click', function (event) {
+  $(document).on('click','#submit', function (event) {
     event.preventDefault();
     //Capture form data in an object
     var newEvent = {
@@ -116,8 +116,8 @@
       //clears the event entry form
       clearEventForm();
       //Adds updated event data from the database and appends to the events table
-      getResults();
     });
+    getResults();
   }); 
 
 
@@ -269,7 +269,7 @@
                   img.src = URL.createObjectURL(this.files[i]); // set src to blob url
                   // img.style.opacity = 1; 
                   $(img).attr("src", img.src);
-                  var nameToAdd = "/images/uploads/" + this.files[i].name;
+                  var nameToAdd = "../images/uploads/" + this.files[i].name;
                   imageArray.push(nameToAdd);
                   newCard = $('<div>');
                   newCard.append(img);
