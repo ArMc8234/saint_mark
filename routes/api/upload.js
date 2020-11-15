@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
 const crypto = require('crypto');
+const fs = require('fs');
 // const GridFsStorage = require('multer-gridfs-storage');
 // const Grid = require('gridfs-stream');
 
@@ -29,9 +30,10 @@ router.route("/").post(upload.array("image"), (req, res) => {
       console.log("Server upload:", fileName);
       
     }
-    res.json({
-        fileArray
-    });
+    //Displays file array that was saved in a new window
+    // res.json({
+    //     fileArray
+    // });
     // for (const element of req.files) {
   
     //     res.json({
@@ -40,8 +42,25 @@ router.route("/").post(upload.array("image"), (req, res) => {
     //       fileArray
 
     // }
+
+    //Send the user back to the image upload page after a successful upload
+     res.redirect('/imageUploader')
   }
   else res.status("409").json("No Files to Upload.");
 });
+
+// router.route("/").delete(upload.single("image"), (req , res) => {
+//     if (req.body) {
+//       let path = req;
+//       try {
+//         fs.unlink(path)
+//       } catch(err){
+//         console.log(err)
+//       }
+      
+    
+//   }
+//   else res.status("409").json("No Files to Remove.");
+// });
 
 module.exports = router;
