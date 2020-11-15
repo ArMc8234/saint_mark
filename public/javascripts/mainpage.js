@@ -27,14 +27,15 @@
 
       //Get updated event data and display to the Saved Events table after a CRUD operation
       function getResults(){
+        let html = "";
+        $('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
         $.ajax({
           method: "GET",
           url: "api/events",
         }).then(function(data){
-          console.log("Data after deletion!");
+          console.log("Getting Results!");
           console.table(data);
-          $('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
-          for (i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.length; i++) {
             //create event row
             // let date = new Date(data[i].date);
             // let newDate = new Intl.DateTimeFormat('en-Us').format(date);
@@ -46,7 +47,7 @@
             // }).format(startTime); 
             // console.log("newStartTime:", newStartTime);
   
-            // //Convert the date and time format for display
+            // // //Convert the date and time format for display
             // let endTime = new Date('2020-01-01T'+ data[i].end );
             // let newEndTime = new Intl.DateTimeFormat('default', { 
             //   hour: 'numeric',
@@ -56,7 +57,7 @@
             // console.log("newEndTime:", newEndTime);
             
             //Create row for the event to add to the Saved Events table
-            let announcement = $(`
+            let announcement = (`
               <tr>
                 <td>${data[i].date}</td>
                 <td>${data[i].start}</td>
@@ -67,11 +68,14 @@
                 <button class="btn btn-outline-danger" id="delete" type="#" value="${data[i]._id}"> Delete </button>
               </tr>
             `);
-            console.table("announcements:", announcement);
+            console.log(`announcements ${i}:, ${announcement}`);
             
             //append new event
-          $('#newEvents').append(announcement);
+            html += announcement;
+            // $('#newEvents').append(announcement);
           }
+          // console.log("HTML to add:", html)
+          document.querySelector('#newEvents').innerHTML = html;
         });
       }
 
@@ -84,14 +88,14 @@
           $('#end').val("");
           $('#description').val("");
         // Revert action button to submit
-        $("#action-button").html("<button id='submit'>Submit</button>");
+        $("#action-button").html("<button class='btn-primary' id='eventSubmit'>Submit</button>");
         // Grab the results from the db again, to populate the DOM
   
       }
   
 
   //Add new event from event form    
-  $(document).on('click','#submit', function (event) {
+  $(document).on('click','#eventSubmit', function (event) {
     event.preventDefault();
     //Capture form data in an object
     var newEvent = {
@@ -108,16 +112,15 @@
       url: "/api/events",
       data: newEvent,
     }).then(function (data) {
-      console.log(data);
-      // location.reload(true);
-      console.log("Form Data Sent");
-      //empties the table where events are displayed
-      $('#newEvents').empty();
-      //clears the event entry form
-      clearEventForm();
-      //Adds updated event data from the database and appends to the events table
+      location.reload();
+      console.log("Form Data Sent: ", data);
+      // clearEventForm();
+      // //empties the table where events are displayed
+      // $('#newEvents').empty();
+      // //clears the event entry form
+      // //Adds updated event data from the database and appends to the events table
+      // getResults();
     });
-    getResults();
   }); 
 
 
@@ -180,8 +183,9 @@
         // On successful call
         success: function(data) {
           //empties the Event form fields
-          clearEventForm();
-          getResults()
+          // clearEventForm();
+          // getResults()
+          location.reload()
         }
       });
     });
@@ -199,8 +203,9 @@
         }).then(function(data){
           console.log("You deleted this event", data._id);
        });
-       $('#newEvents').empty();
-       getResults();
+      //  $('#newEvents').empty();
+      //  getResults();
+       location.reload()
       });
   
     //================== Image Gallery =====================
