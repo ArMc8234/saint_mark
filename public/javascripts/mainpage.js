@@ -223,6 +223,7 @@
       //Delete image in the public folder
       removeGalleryRef(thisId);
       removeFile(thisURL);
+      location.reload();
     });
    function removeGalleryRef(thisId){
      $.ajax({
@@ -269,7 +270,7 @@
                   img.src = URL.createObjectURL(this.files[i]); // set src to blob url
                   // img.style.opacity = 1; 
                   $(img).attr("src", img.src);
-                  var nameToAdd = "../images/uploads/" + this.files[i].name;
+                  var nameToAdd = "../images/uploads/" + this.files[i].name; //The image path must include relative path (../) to work in Heroku
                   imageArray.push(nameToAdd);
                   newCard = $('<div>');
                   newCard.append(img);
