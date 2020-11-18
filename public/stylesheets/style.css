@@ -103,6 +103,10 @@ body {
     width: 100%; 
     overflow: auto;
   }
+  .intro-pic {
+    margin-left: auto;
+    margin-right: auto;
+  }
    
   #activities {
     float:none;
@@ -139,7 +143,10 @@ body {
 .intro-pic{
   float: left;
   margin-left: 15px;
-  box-shadow:  10px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+  box-shadow:  10px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  height: auto;
+  width: 100%;
+  max-width: 400px;
 }
 a {
   color: #00B7FF;
