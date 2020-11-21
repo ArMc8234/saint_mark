@@ -20,7 +20,7 @@ body {
   color: #396AA2;
 }
 .parallax {
-  background-image: url(../images/StMarkBldg4.jpg);
+  /* background-image: url(../images/StMarkBldg4.jpg); */
   height: 68vh;
   background-attachment: fixed;
   background-position: center; 
@@ -65,6 +65,7 @@ body {
   content: "";
   clear: both;
   display: table;
+  justify-content: space-around;
   /* top:0;
   bottom:0;
   right:0;
@@ -103,11 +104,24 @@ body {
     width: 100%; 
     overflow: auto;
   }
-  .intro-pic {
-    margin-left: auto;
-    margin-right: auto;
+  .imgDiv {
+    float: left;
+    display: block;
+    width: 100;
+    overflow: auto;
   }
-   
+  .intro-pic {
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  #introText {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
   #activities {
     float:none;
     display:block;
@@ -142,12 +156,15 @@ body {
 
 .intro-pic{
   float: left;
+  border: #396AA2 solid;
+  border-width: 1em;
   margin-left: 15px;
   box-shadow:  10px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   height: auto;
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
 }
+
 a {
   color: #00B7FF;
 }
