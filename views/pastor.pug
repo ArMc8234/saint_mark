@@ -1,0 +1,34 @@
+extends layout
+
+
+block content
+  .parallax
+    div.containParallax
+      h1= title
+      
+  //- Consider iterating the staff rows from a JSON object  
+  .row.staffDescription
+    .col-md-3.offset-md-2.staffPhotoDiv
+      br
+      img.staff-pic(src="/images/avatar.png" height="200" width="180")
+
+    .col-md-5.role-description
+      h2.staffTitle Pastor
+      h3.staffName Rev. Linda DT Clark, PhD.
+      p Insert Bio Here         
+
+    
+  #location
+    br
+    h2 Location
+    img(src="/images/stMarkMap.png" height="45%" width="40%")
+    br
+    p 521 Obendorfer Rd Norfolk, VA
+    p Call (757) 545-5527
+    a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX")
+      i.fab.fa-facebook-square.fa-3x(style="color: #2E1017")
+       
+
+    
+
+

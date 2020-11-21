@@ -118,8 +118,8 @@ router.get('/', function(req, res, next) {
 });
 
 // GET /staff
-router.get('/staff', function(req, res, next) {
-  return res.render('staff', { title: "Meet St. Mark's Staff" });
+router.get('/pastor', function(req, res, next) {
+  return res.render('pastor', { title: "Meet St. Mark's Pastor" });
 });
 //GET the Event form page
 // router.get('/events', function(req, res, next) {
