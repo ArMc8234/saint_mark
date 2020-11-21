@@ -10,6 +10,19 @@
   //$(Document).ready(function(){}) has been deprecated and replaced with the following...
   $(function(){
 
+  //==================== Main Page Parallax Display ===================
+  var images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
+  var nextimage=0;
+  doSlideshow();
+  
+  function doSlideshow(){
+      if(nextimage>=images.length){nextimage=0;}
+      $('.parallax')
+      .css('background-image','url("'+images[nextimage++]+'")')
+      .fadeIn(5000,function(){
+          setTimeout(doSlideshow,5000);
+      });
+  }
   //==================== Main Page Event Display ======================
       //MODAL DISPLAY
       //set  document to listen for <td> hyperlink click and call for the event description linked to the same ID as the event title"
