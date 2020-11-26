@@ -4,7 +4,7 @@ block content
     #uploadForm
         br
         .col-md-6.offset-3
-            form(action="/save-details" method="post" enctype="multipart/form-data")
+            form(action="api/upload" method="post" enctype="multipart/form-data")
                 .custom-file.mb-3  
                     input#newImages.custom-file-input(type="file" name="image" multiple)
                     label.custom-file-label(for="file")

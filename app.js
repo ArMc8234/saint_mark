@@ -38,8 +38,11 @@ app.use(function (req, res, next) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+app.set('view engine', 'pug');
+
 // Added ejs.renderFile, S3_Bucket, and config region for file upload into AWS
-app.set('view engine', 'pug', require('ejs').renderFile);
+// app.set('view engine', 'pug', require('ejs').renderFile);
 const S3_BUCKET = process.env.S3_BUCKET;
 aws.config.region = 'eu-west-1';
 
