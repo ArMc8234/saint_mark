@@ -86,7 +86,7 @@ var upload = multer({
   })
 })
 
-router.route('/').post(upload.array('image'), function(req, res, next) {
+router.route('/').post(upload.array('photos'), function(req, res, next) {
   res.send('Successfully uploaded ' + req.files.length + ' files!')
 });
 
