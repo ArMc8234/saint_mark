@@ -163,6 +163,45 @@ router.get('/imageUploader', mid.requiresLogin, function(req, res, next) {
     })
 });
 
+router.get('/imageUpload-s3', mid.requiresLogin, function(req, res, next) {
+  db.User.findById(req.session.userId)
+    .exec(function(error, user) {
+      if(error) {
+        return next(error);
+      } else {
+        res.render('imageUpload copy', { title: "S3 ImageUpload" });
+      }
+    })
+});
+
+router.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
+});
+router.post('/save-details', (req, res) => {
+  // TODO: Read POSTed form data and do something useful
+});
 
 //API Routes
 router.use("/api", apiRoutes);

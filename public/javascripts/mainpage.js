@@ -282,34 +282,18 @@
           // }
           if (this.files){
             
-            for(i=0; i < this.files.length; i++){
-              // var img = document.querySelector(".myImg-" + i);  // $('img')[0]
-                  var img = $(`<img class="myImg-${i} rounded float-left" height='250' width='250'>`);
-                  img.src = URL.createObjectURL(this.files[i]); // set src to blob url
-                  // img.style.opacity = 1; 
-                  $(img).attr("src", img.src);
-                  var nameToAdd = "../images/uploads/" + this.files[i].name; //The image path must include relative path (../) to work in Heroku
-                  imageArray.push(nameToAdd);
-                  newCard = $('<div>');
-                  newCard.append(img);
-                  $('#previewGallery').append(newCard);
-                  console.log(JSON.stringify(this.files[i]));
-                  console.log(nameToAdd);
-                  // img.onload = imageIsLoaded;
-                  // $("#imageButton").html("<button id='make-new'>Submit</button>");
-              
-            //   newPic = $("<img class='myImg' height='250' width='250'>");
-              
-            //   newPic.src = URL.createObjectURL(this.files[i]);
-            //   $(newPic).attr("src", newPic.src);
-            //   // newPic.onload = imageIsLoaded;
-            //   console.log("Image" + [i] + ": ", newPic.src);
-            //   imageArray.push(newPic.src);
-            //   fileArray.push(this.files[i]);
-            //   newCard = $("<div>");
-            //   (newCard).append(newPic);
-            //   $("#previewGallery").append(newCard);
-            //   imageIsLoaded(newPic.src);
+             for(i=0; i < this.files.length; i++){
+                   var img = $(`<img class="myImg-${i} rounded float-left" height='250' width='250'>`);
+                   img.src = URL.createObjectURL(this.files[i]); // set src to blob url
+                   $(img).attr("src", img.src);
+            //       var nameToAdd = "../images/uploads/" + this.files[i].name; //The image path must include relative path (../) to work in Heroku
+            //       imageArray.push(nameToAdd);
+                   newCard = $('<div>');
+                   newCard.append(img);
+                   $('#previewGallery').append(newCard);
+                   getSignedRequest(this.files[i]);
+            //       console.log(JSON.stringify(this.files[i]));
+            //       console.log(nameToAdd);
              }
              gallery.style.opacity = 1;
              $("#imageButton").html("<button id='make-new' class='btn btn-primary'>Submit</button>");
@@ -317,10 +301,6 @@
       });
     });
 
-  //   function imageIsLoaded(item) { 
-  //     confirm("Would you like to upload " +  item);  // blob url
-  //     // update width and height ...
-  // }
 
   const imageArray = [];
   
@@ -390,7 +370,84 @@
   //   }
     
   // }); 
+  //+++++++++++++++++++++++++ S3 Image Upload +++++++++++++++++++
+      /*
+      Function to carry out the actual PUT request to S3 using the signed request from the app.
+    */
+   function uploadFile(file, signedRequest, url){
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          document.getElementById('preview').src = url;
+          document.getElementById('avatar-url').value = url;
+        }
+        else{
+          alert('Could not upload file.');
+        }
+      }
+    };
+    xhr.send(file);
+  }
 
+  /*
+    Function to get the temporary signed request from the app.
+    If request successful, continue to upload the file using this signed
+    request.
+  */
+  function getSignedRequest(file){
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+    galleryCollection(`/sign-s3?file-name=${file.name}&file-type=${file.type}`)
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          const response = JSON.parse(xhr.responseText);
+          uploadFile(file, response.signedRequest, response.url);
+          
+          console.log("Response url: ", response.url)
+        }
+        else{
+          alert('Could not get signed URL.');
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  /*
+   Function called when file input updated. If there is a file selected, then
+   start upload procedure by asking for a signed request from the app.
+  */
+  function initUpload(){
+    const files = document.getElementById('file-input').files;
+    const file = files[0];
+    if(file == null){
+      return alert('No file selected.');
+    }
+    getSignedRequest(file);
+  }
+
+  /*
+   Bind listeners when the page loads.
+  */
+  (() => {
+      document.getElementById('file-input').onchange = initUpload;
+  })();
   
+  //My code to save the url to the mongo db for retrieval
+  function galleryCollection(newUpload){
+    $.ajax({
+      method: "POST",
+      url: "/api/galleries",
+      data: newUpload,
+    }).then(function (data) {
+      console.table(data);
+      // location.reload(true);
+    });
+    console.log("Gallery Data Sent");
+
+  }
   
 });

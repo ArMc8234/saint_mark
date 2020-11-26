@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    input#file-input(type="file")
+    p#status Please select a file
+    img#preview(style="border:1px solid gray;width:300px;" src="/images/default.png")
+    h2 Your information
+    form(method="POST" action="/save-details")
+      input#avatar-url(type="hidden" name="avatar-url" value="/images/default.png")
+      input(type="text" name="username" placeholder="Username")
+      br
+      input(type="text" name="full-name" placeholder="Full name")
+      br
+      br
+      hr
+      h2 Save changes
+      input(type="submit" value="Update profile")

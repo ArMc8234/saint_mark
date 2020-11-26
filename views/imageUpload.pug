@@ -4,26 +4,13 @@ block content
     #uploadForm
         br
         .col-md-6.offset-3
-            form(action="api/upload" method="post" enctype="multipart/form-data")
+            form(action="/save-details" method="post" enctype="multipart/form-data")
                 .custom-file.mb-3  
                     input#newImages.custom-file-input(type="file" name="image" multiple)
                     label.custom-file-label(for="file")
                     br
-                    //- img#myImg(src="#" alt="your image" height="250" width="250")
                     .row
                         #previewGallery(style="opacity: 0").col-sm-12
-                        //- img.myImg-0(src="#" alt="your image" height="250" width="250" value="0" style="opacity: 0")
-                        //- img.myImg-1(src="#" alt="your image" height="250" width="250" value="1" style="opacity: 0")
-                        //- img.myImg-2(src="#" alt="your image" height="250" width="250" value="2" style="opacity: 0")
-                        //- img.myImg-3(src="#" alt="your image" height="250" width="250" value="3" style="opacity: 0")
-                        //- img.myImg-4(src="#" alt="your image" height="250" width="250" value="4" style="opacity: 0")
-                        //- img.myImg-5(src="#" alt="your image" height="250" width="250" value="5" style="opacity: 0")
-                        //- img.myImg-6(src="#" alt="your image" height="250" width="250" value="6" style="opacity: 0")
-                        //- img.myImg-7(src="#" alt="your image" height="250" width="250" value="7" style="opacity: 0")
-                        //- img.myImg-8(src="#" alt="your image" height="250" width="250" value="8" style="opacity: 0")
-                        //- img.myImg-9(src="#" alt="your image" height="250" width="250" value="9" style="opacity: 0")
-                        //- img.myImg-10(src="#" alt="your image" height="250" width="250" value="10" style="opacity: 0")
-                        //- img.myImg-11(src="#" alt="your image" height="250" width="250" value="11" style="opacity: 0")
                     .row    
                         #imageButton.col-sm-12
 
