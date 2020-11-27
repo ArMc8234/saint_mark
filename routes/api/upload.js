@@ -83,8 +83,7 @@ var upload = multer({
     key: function (req, file, cb) {
       cb(null, Date.now().toString())
     },
-    contentType: file.mimetype,
-    ACL: 'public-read'
+      ACL: 'public-read'
   })
 })
 
