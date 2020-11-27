@@ -83,13 +83,13 @@ var upload = multer({
     key: function (req, file, cb) {
       cb(null, Date.now().toString())
     },
-      ACL: 'public-read'
+    contentType: multerS3.AUTO_CONTENT_TYPE, 
+    ACL: 'public-read'
   })
 })
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
-  // res.send('Successfully uploaded ' + req.files.length + ' files!')
-  return res.json("imageURL: ", req.file.location)
+   res.send('Successfully uploaded ' + req.files.length + ' files!')
 });
 
 module.exports = router;
