@@ -15,7 +15,6 @@ const config = require('../../.aws/config');
 aws.config.update({
   secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
   accessKeyId: config.AWS_ACCESS_KEY,
-  
 })
 
 // const SESConfig = {
@@ -80,6 +79,12 @@ const fileFilter = (req, file, cb) => {
     cb(new Error("Invalid file type, only JPEG and PNG is allowed!"), false);
   }
 };
+
+const keyName = '';
+const generateKey =  (req, file, cb) {
+  keyName = Date.now().toString();
+  cb(null, keyName)
+}
  
 var upload = multer({
   storage: multerS3({
@@ -89,16 +94,27 @@ var upload = multer({
     metadata: function (req, file, cb) {
       cb(null, {fieldName: file.fieldname});
     },
-    key: function (req, file, cb) {
-      cb(null, Date.now().toString())
-    },
+    key: generateKey,
     contentType: multerS3.AUTO_CONTENT_TYPE, 
     ACL: 'public-read'
   })
-})
+}).then(saveLocation(keyName))
+
+function saveLocation(newData){
+  $.ajax({
+    method: "POST",
+    url: "/api/galleries",
+    data: `https://stmarkfiles7.s3.amazonaws.com/${newData}`,
+  }).then(function (data) {
+    console.table(data);
+    // location.reload(true);
+  });
+  console.log("S3 Gallery Data Sent");
+
+}
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
-   res.send('Successfully uploaded ' + req.key + ' files!')
+   res.send('Successfully uploaded ' + req.files + ' files!')
 });
 
 module.exports = router;
