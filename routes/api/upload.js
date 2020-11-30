@@ -101,17 +101,8 @@ var upload = multer({
 }).then(saveLocation(keyName))
 
 function saveLocation(newData){
-  $.ajax({
-    method: "POST",
-    url: "/api/galleries",
-    data: `https://stmarkfiles7.s3.amazonaws.com/${newData}`,
-  }).then(function (data) {
-    console.table(data);
-    // location.reload(true);
-  });
-  console.log("S3 Gallery Data Sent");
-
-}
+  router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`)
+  }
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
    res.send('Successfully uploaded ' + req.files + ' files!')
