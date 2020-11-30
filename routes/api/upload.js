@@ -72,9 +72,18 @@ aws.config.update({
 //Multer-s3 storage
 
 var s3 = new aws.S3()
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type, only JPEG and PNG is allowed!"), false);
+  }
+};
  
 var upload = multer({
   storage: multerS3({
+    fileFilter,
     s3: s3,
     bucket: 'stmarkfiles7',
     metadata: function (req, file, cb) {
@@ -89,7 +98,7 @@ var upload = multer({
 })
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
-   res.send('Successfully uploaded ' + req.files.length + ' files!')
+   res.send('Successfully uploaded ' + req.key + ' files!')
 });
 
 module.exports = router;
