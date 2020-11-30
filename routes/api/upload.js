@@ -98,13 +98,14 @@ var upload = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE, 
     ACL: 'public-read'
   })
-}).then(saveLocation(keyName))
+})
+// .then(saveLocation(keyName))
 
-function saveLocation(newData){
-  router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
-    console.log('loaded file');
-  })
-  }
+// function saveLocation(newData){
+//   router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
+//     console.log('loaded file');
+//   })
+//   }
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
    res.send('Successfully uploaded ' + req.files + ' files!')
