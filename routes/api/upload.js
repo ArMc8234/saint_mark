@@ -81,7 +81,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 const keyName = '';
-const generateKey =  (req, file, cb) {
+const generateKey =  (req, file, cb) => {
   keyName = Date.now().toString();
   cb(null, keyName)
 }
