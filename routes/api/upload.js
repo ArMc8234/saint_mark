@@ -101,7 +101,9 @@ var upload = multer({
 }).then(saveLocation(keyName))
 
 function saveLocation(newData){
-  router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`)
+  router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
+    console.log('loaded file');
+  })
   }
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
