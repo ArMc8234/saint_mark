@@ -80,7 +80,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const keyName = '';
+let keyName = '';
 const generateKey =  (req, file, cb) => {
   keyName = Date.now().toString();
   cb(null, keyName)
@@ -99,7 +99,7 @@ var upload = multer({
     ACL: 'public-read'
   })
 })
-// .then(saveLocation(keyName))
+.then(console.log("S3 Location: ", data.location));
 
 // function saveLocation(newData){
 //   router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
