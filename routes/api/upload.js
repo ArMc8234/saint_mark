@@ -5,6 +5,7 @@ const multerS3 = require("multer-s3");
 // const fs = require('fs');
 const aws = require('aws-sdk');
 const config = require('../../.aws/config');
+const Galleries = require('./galleries');
 // const config = require('../config')
 // const GridFsStorage = require('multer-gridfs-storage');
 // const Grid = require('gridfs-stream');
@@ -105,9 +106,17 @@ var upload = multer({
 //     console.log('loaded file');
 //   })
 //   }
-
+let newURL = "";
 router.route('/').post(upload.array('image'), function(req, res, next) {
+   newURL = req.files[0].location;
    return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
-});
+}).then(
+  Galleries.post(newURL),
+  console.log("Gallery URL saved!")
+  // router.post('/galleries', newURL, function(req, res, next) {
+  // })
+
+)
+
 
 module.exports = router;
