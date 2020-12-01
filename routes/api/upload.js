@@ -109,14 +109,15 @@ var upload = multer({
 let newURL = "";
 router.route('/').post(upload.array('image'), function(req, res, next) {
    newURL = req.files[0].location;
+   next(
+     Galleries.post(newURL),
+     console.log("Gallery URL saved!")
+     // router.post('/galleries', newURL, function(req, res, next) {
+     // })
+   
+   )
    return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
-}).then(
-  Galleries.post(newURL),
-  console.log("Gallery URL saved!")
-  // router.post('/galleries', newURL, function(req, res, next) {
-  // })
-
-)
+  })
 
 
 module.exports = router;
