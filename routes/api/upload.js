@@ -106,15 +106,18 @@ var upload = multer({
 //     console.log('loaded file');
 //   })
 //   }
-let newURL = "";
+let newURL;
 router.route('/').post(upload.array('image'), function(req, res, next) {
    newURL = req.files[0].key;
   //  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
-  addNewURL(newURL)
   })
 
-function addNewURL(){
-  Galleries.post(`stmarkfiles7.s3.amazonaws.com/${newURL}`),
+if (newURL === Nan){
+  addNewURL(newURL)
+}
+
+function addNewURL(name){
+  Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
   console.log("Gallery URL saved!")
 }
 module.exports = router;
