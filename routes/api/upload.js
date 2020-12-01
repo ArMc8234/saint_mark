@@ -108,13 +108,13 @@ var upload = multer({
 //   }
 let newURL = "";
 router.route('/').post(upload.array('image'), function(req, res, next) {
-   newURL = req.files[0].location;
+   newURL = req.files[0].key;
   //  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
   addNewURL(newURL)
   })
 
 function addNewURL(){
-  Galleries.post(newURL),
+  Galleries.post(`stmarkfiles7.s3.amazonaws.com/${newURL}`),
   console.log("Gallery URL saved!")
 }
 module.exports = router;
