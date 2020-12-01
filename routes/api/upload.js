@@ -99,7 +99,7 @@ var upload = multer({
     ACL: 'public-read'
   })
 })
-.then(console.log("S3 Location: ", data.location));
+.then(console.log("S3 Location: ", file.location));
 
 // function saveLocation(newData){
 //   router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
