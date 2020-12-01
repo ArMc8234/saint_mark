@@ -112,12 +112,7 @@ router.route('/').post(upload.array('image'), function(req, res, next) {
   //  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
   });
 
-  if(xhr.readyState === 4){
-     if(xhr.status === 200){
-       addNewURL(newURL)
 
-  }
-  }
   
 function addNewURL(name){
   Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
