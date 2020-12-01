@@ -107,7 +107,7 @@ var upload = multer({
 //   }
 
 router.route('/').post(upload.array('image'), function(req, res, next) {
-   return res.json('Successfully uploaded ' + res.file.location + ' files!')
+   return res.json('Successfully uploaded ' + req.files + ' files!')
 });
 
 module.exports = router;
