@@ -110,12 +110,15 @@ let newURL;
 router.route('/').post(upload.array('image'), function(req, res, next) {
    newURL = req.files[0].key;
   //  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
-  })
+  });
 
-if (newURL === NaN){
-  addNewURL(newURL)
-}
+  if(xhr.readyState === 4){
+     if(xhr.status === 200){
+       addNewURL(newURL)
 
+  }
+  }
+  
 function addNewURL(name){
   Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
   console.log("Gallery URL saved!")
