@@ -9,8 +9,8 @@ block content
                li 
                  .row
                     .col-sm-12
-                      a(href=(`https://stmarkfiles7.s3.amazonaws.com/${gallery.Key}`) data-lightbox="gallery-set")
-                        img(src=(`https://stmarkfiles7.s3.amazonaws.com/${gallery.Key}`) height="250" width="250")
+                      a(href=(`https://stmarkfiles7.s3.amazonaws.com/${(gallery.key)}`) data-lightbox="gallery-set")
+                        img(src=(`https://stmarkfiles7.s3.amazonaws.com/${(gallery.key)}`) height="250" width="250")
                       if currentUser
                         .row
                           .col-sm-12   
