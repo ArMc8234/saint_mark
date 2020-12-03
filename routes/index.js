@@ -159,7 +159,7 @@ router.get('/gallery', function(req, res, next) {
     if (err) console.log(err, err.stack); // an error occurred
     else     console.log(data); 
     // res.render('gallery', { title: "Gallery", galleries: data })  
-    res.send("Data:", JSON.stringify(data)) 
+    res.status().send("Data:", JSON.stringify(data)) 
   });
 
 });
