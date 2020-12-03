@@ -158,8 +158,9 @@ let imageKeys =[];
   };
   s3.listObjectsV2(params, function(err, data) {
     if (err) console.log(err, err.stack); // an error occurred
-    else     console.table(data); 
-    imageKeys.push(data);
+    else     console.log(data); 
+    let imageInfo = data;
+    imageKeys.push(imageInfo);
   });
   res.render('gallery', { title: "Gallery", galleries: imageKeys })  
 });
