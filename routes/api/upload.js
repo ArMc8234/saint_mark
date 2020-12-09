@@ -4,7 +4,7 @@ const multerS3 = require("multer-s3");
 // const crypto = require('crypto');
 // const fs = require('fs');
 const aws = require('aws-sdk');
-const config = require('../../.aws/config');
+// const config = require('../../.aws/config');
 const Galleries = require('./galleries');
 // const config = require('../config')
 // const GridFsStorage = require('multer-gridfs-storage');
@@ -14,8 +14,8 @@ const Galleries = require('./galleries');
 // //Initialize gfs
 // let gfs;
 aws.config.update({
-  secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
-  accessKeyId: config.AWS_ACCESS_KEY,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  accessKeyId: AWS_ACCESS_KEY,
 })
 
 // const SESConfig = {
