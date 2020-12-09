@@ -17,8 +17,8 @@ const Galleries = require('./galleries');
 // aws.config.credentials = credentials;
 
 aws.config.update({
-  secretAccessKey: AWS_SECRET_ACCESS_KEY,
-  accessKeyId: AWS_ACCESS_KEY,
+  secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: config.AWS_ACCESS_KEY,
 })
 
 // const SESConfig = {
