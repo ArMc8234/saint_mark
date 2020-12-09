@@ -44,7 +44,7 @@ app.set('view engine', 'pug');
 // Added ejs.renderFile, S3_Bucket, and config region for file upload into AWS
 // app.set('view engine', 'pug', require('ejs').renderFile);
 const S3_BUCKET = process.env.S3_BUCKET;
-aws.config.region = 'eu-west-1';
+aws.config.region = 'us-east-1';
 
 app.use(logger('dev'));
 app.use(express.json());
