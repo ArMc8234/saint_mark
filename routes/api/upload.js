@@ -13,13 +13,13 @@ const Galleries = require('./galleries');
 // aws.config.region = 'eu-west-1';
 // //Initialize gfs
 // let gfs;
-var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
-aws.config.credentials = credentials;
+// var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
+// aws.config.credentials = credentials;
 
-// aws.config.update({
-//   secretAccessKey: AWS_SECRET_ACCESS_KEY,
-//   accessKeyId: AWS_ACCESS_KEY,
-// })
+aws.config.update({
+  secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  accessKeyId: AWS_ACCESS_KEY,
+})
 
 // const SESConfig = {
 //   apiVersion: "2010-12-01",
