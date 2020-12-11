@@ -15,10 +15,12 @@ const Galleries = require('./galleries');
 // let gfs;
 var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
 aws.config.credentials = credentials;
+// process.env.AWS_SDK_LOAD_CONFIG = true;
 
 // aws.config.update({
-//   secretAccessKey: AWS_SECRET_ACCESS_KEY,
-//   accessKeyId: AWS_ACCESS_KEY,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   accessKeyId: process.env.AWS_ACCESS_KEY,
+//   region: "us-east-1"
 // })
 
 // const SESConfig = {
