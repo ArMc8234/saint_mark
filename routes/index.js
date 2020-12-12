@@ -147,22 +147,24 @@ router.get('/events', mid.requiresLogin, function(req, res, next) {
 
 //GET the Gallery form page
 router.get('/gallery', function(req, res, next) {
-//   db.Gallery.find({})
-//   .then(function(dbGallery) {
-//    res.render('gallery', { title: "Gallery", galleries: dbGallery })
-//  }).catch(err => console.log(err));
-let imageKeys =[];
-  var params = {
-    Bucket: "stmarkfiles7", 
-    MaxKeys: 100
-  };
-  s3.listObjectsV2(params, function(err, data) {
-    if (err) console.log(err, err.stack); // an error occurred
-    else     console.log(data); 
-    let imageInfo = data;
-    imageKeys.push(imageInfo);
-  });
-  res.render('gallery', { title: "Gallery", galleries: imageKeys })  
+  db.Gallery.find({})
+  .then(function(dbGallery) {
+   res.render('gallery', { title: "Gallery", galleries: dbGallery })
+ }).catch(err => console.log(err));
+
+//======Test to list objects from S3
+// let imageKeys =[];
+//   var params = {
+//     Bucket: "stmarkfiles7", 
+//     MaxKeys: 100
+//   };
+//   s3.listObjectsV2(params, function(err, data) {
+//     if (err) console.log(err, err.stack); // an error occurred
+//     else     console.log(data); 
+//     let imageInfo = data;
+//     imageKeys.push(imageInfo);
+//   });
+//   res.render('gallery', { title: "Gallery", galleries: imageKeys })  
 });
 
 router.get('/imageUploader', mid.requiresLogin, function(req, res, next) {
