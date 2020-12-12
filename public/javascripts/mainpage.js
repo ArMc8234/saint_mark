@@ -448,5 +448,16 @@
   //   console.log("Gallery Data Sent");
 
   // }
-  
+  let imageKeys =[];
+  var params = {
+    Bucket: "stmarkfiles7", 
+    MaxKeys: 100
+  };
+  s3.listObjectsV2(params, function(err, data) {
+    if (err) console.log(err, err.stack); // an error occurred
+    else     console.log(data); 
+    let imageInfo = data;
+    imageKeys.push(imageInfo);
+  });
+  console.log("S3 data", imageKeys)
 });
