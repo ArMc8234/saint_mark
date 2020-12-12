@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const multer = require("multer");
 const multerS3 = require("multer-s3");
+require('dotenv').config();
 // const crypto = require('crypto');
 // const fs = require('fs');
 const aws = require('aws-sdk');
 // const config = require('../../.aws/config');
 const Galleries = require('./galleries');
+const db = require('../../models');
 // const config = require('../config')
 // const GridFsStorage = require('multer-gridfs-storage');
 // const Grid = require('gridfs-stream');
@@ -13,15 +15,17 @@ const Galleries = require('./galleries');
 // aws.config.region = 'eu-west-1';
 // //Initialize gfs
 // let gfs;
-var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
-aws.config.credentials = credentials;
-// process.env.AWS_SDK_LOAD_CONFIG = true;
 
-// aws.config.update({
-//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//   accessKeyId: process.env.AWS_ACCESS_KEY,
-//   region: "us-east-1"
-// })
+//I like this, but consider for another project for loading IAM profile
+// var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
+// aws.config.credentials = credentials;
+
+
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  region: "us-east-1"
+})
 
 // const SESConfig = {
 //   apiVersion: "2010-12-01",
@@ -76,7 +80,7 @@ aws.config.credentials = credentials;
 
 //Multer-s3 storage
 
-var s3 = new aws.S3()
+var s3 = new aws.S3();
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
@@ -89,7 +93,8 @@ const fileFilter = (req, file, cb) => {
 let keyName = '';
 const generateKey =  (req, file, cb) => {
   keyName = Date.now().toString();
-  cb(null, keyName)
+  cb(null, keyName);
+  addNewURL(keyName)
 }
  
 var upload = multer({
@@ -114,13 +119,22 @@ var upload = multer({
 let newURL;
 router.route('/').post(upload.array('image'), function(req, res, next) {
    newURL = req.files[0].key;
-  //  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
+   
+    addNewURL(keyName); 
+   console.log("newURL: ", newURL)
+  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
   });
 
-
-  
 function addNewURL(name){
-  Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
-  console.log("Gallery URL saved!")
+  // Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
+  // let newName = `stmarkfiles7.s3.amazonaws.com/${name}`;
+  db.Gallery.create({ imageURL: name }, function(res, err){
+    if(err) {
+      return (err)
+    } else {
+      console.log("Gallery URL saved from addNew!", name)
+
+    }
+  })
 }
 module.exports = router;
