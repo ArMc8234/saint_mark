@@ -305,22 +305,21 @@
   
   const form = document.getElementsByTagName('form')[0];
   form.addEventListener('submit', function() {
-    for(i=0; i< imageArray.length; i++){
-          var newUpload = {
-            imageURL: imageArray[i]
-            // date: date.now()
+  /* This is a retired function for uploading the imageURL. It has been replaced with an upload of the url in the addNewURL function in upload.js. The only thing this does now is to list for the submit click and empty the #previewGallery. */
+  
+  //   for(i=0; i< imageArray.length; i++){
+  //         var newUpload = { imageURL: imageArray[i] }
             
-          }
-          $.ajax({
-            method: "POST",
-            url: "/api/galleries",
-            data: newUpload,
-          }).then(function (data) {
-            console.table(data);
-            // location.reload(true);
-          });
-          console.log("Gallery Data Sent");
-  }
+  //         $.ajax({
+  //           method: "POST",
+  //           url: "/api/galleries",
+  //           data: newUpload,
+  //         }).then(function (data) {
+  //           console.table(data);
+  //           // location.reload(true);
+  //         });
+  //         console.log("Gallery Data Sent");
+  // }
   $("#previewGallery").empty();
   
 });
