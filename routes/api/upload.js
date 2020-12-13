@@ -137,4 +137,20 @@ function addNewURL(name){
     }
   })
 }
+
+router.route('/:id').delete(  function(req, res, next) {
+    console.log("S3 Data received: ", req)
+    let params = {
+      Bucket: 'stmarkfiles7',
+      Key: req.params.id
+    };
+    s3.deleteObject(params, function(err, data) {
+      if (err) {
+        console.log(err, err.stack)
+      } else {
+        console.log("Successful S3 Object Deletion: ", data);
+      }
+    })
+  });
+
 module.exports = router;
