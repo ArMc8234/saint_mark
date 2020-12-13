@@ -253,15 +253,13 @@
 
    } 
 
-  function removeFile(thisURL){
-      $.ajax({
-          method: "DELETE",
-          url:  "api/upload" + thisURL,
-        }).then(function(data){
-         });
-        console.log("You deleted this url");
-    
-
+  function removeFile(fileName){
+    $.ajax({
+      method: "DELETE",
+      url: "api/upload/" + fileName
+    }).then(function(data){
+      console.log("You selected this S3 object for deletion: ", data);
+   });
   }
     
 
