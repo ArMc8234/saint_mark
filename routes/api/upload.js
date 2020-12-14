@@ -122,7 +122,8 @@ router.route('/').post(upload.array('image'), function(req, res, next) {
    
     addNewURL(keyName); 
    console.log("newURL: ", newURL)
-  return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
+   return res.render('imageUpload', { title: "ImageUpload" });
+  // return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
   });
 
 function addNewURL(name){
