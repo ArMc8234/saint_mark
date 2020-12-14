@@ -171,6 +171,7 @@ a {
 #location {
   background-color: #396AA2;
   height: auto;
+  width: 100%;
   /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: center; 
