@@ -3,12 +3,7 @@
   2. Event page
   3. Image upload */
 
-  // import { createRequire } from 'module';
-  // const require = createRequire(import.meta.url);
-  // const fs = require('fs');
-
-  //$(Document).ready(function(){}) has been deprecated and replaced with the following...
-  $(function(){
+$(function(){
 
   //==================== Main Page Parallax Display ===================
   var images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
@@ -243,6 +238,7 @@
       removeFile(thisURL);
       location.reload();
     });
+    
    function removeGalleryRef(thisId){
      $.ajax({
        method: "DELETE",
