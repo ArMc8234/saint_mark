@@ -2,24 +2,9 @@ const router = require("express").Router();
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 require('dotenv').config();
-// const crypto = require('crypto');
-// const fs = require('fs');
 const aws = require('aws-sdk');
-// const config = require('../../.aws/config');
 const Galleries = require('./galleries');
 const db = require('../../models');
-// const config = require('../config')
-// const GridFsStorage = require('multer-gridfs-storage');
-// const Grid = require('gridfs-stream');
-// const S3_BUCKET = process.env.S3_BUCKET;
-// aws.config.region = 'eu-west-1';
-// //Initialize gfs
-// let gfs;
-
-//I like this, but consider for another project for loading IAM profile
-// var credentials = new aws.SharedIniFileCredentials({profile: 'stmarkapp'});
-// aws.config.credentials = credentials;
-
 
 aws.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -27,60 +12,11 @@ aws.config.update({
   region: "us-east-1"
 })
 
-// const SESConfig = {
-//   apiVersion: "2010-12-01",
-//   accessKeyId: process.env.AWS_ACCESS_KEY,
-//   accessSecretKey: process.env.AWS_SECRET_KEY,
-//   region: "us-east-1"
-// }
-// AWS.config.update(SESConfig);
-// var sns = new AWS.SNS();
-//==========================================
-// Multer Upload for local storage
-// var storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "public/images/uploads");
-//   },
-//   filename: (req, file, cb) => {
-//     // Removed Date.now() to make a simpler file name to find from the front end
-//     // cb(null, Date.now() + "-" + file.originalname);
-//     cb(null, file.originalname);
-//   }
-// });
-// const upload = multer({ storage });
-
-  // router.route("/").post(upload.array("image"), (req, res) => {
-  //     if (req.files) {
-  //     const fileArray = [];
-  //     for(i=0; i < req.files.length; i++){
-  //       let fileName = "/images/uploads/" + req.files[i].filename;
-  //       fileArray.push(fileName)
-  //       console.log("Server upload:", fileName);
-        
-  //     }
-  //     //Displays file array that was saved in a new window
-  //     // res.json({
-  //     //     fileArray
-  //     // });
-  //     // for (const element of req.files) {
-    
-  //     //     res.json({
-          
-  //     //     });  // imageUrl: "/images/uploads/" + fileName
-  //     //       fileArray
-  
-  //     // }
-  
-  //     //Send the user back to the image upload page after a successful upload
-  //      res.redirect('/imageUploader')
-  //   }
-  //   else res.status("409").json("No Files to Upload.");
-  // });
 //==============================================
 
 //Multer-s3 storage
 
-var s3 = new aws.S3();
+const s3 = new aws.S3();
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
@@ -90,6 +26,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+//-Generate the file name that will be used for the S3 bucket and save it to the Gallery dB
 let keyName = '';
 const generateKey =  (req, file, cb) => {
   keyName = Date.now().toString();
@@ -97,7 +34,7 @@ const generateKey =  (req, file, cb) => {
   addNewURL(keyName)
 }
  
-var upload = multer({
+const upload = multer({
   storage: multerS3({
     fileFilter,
     s3: s3,
@@ -111,25 +48,18 @@ var upload = multer({
   })
 });
 
-// function saveLocation(newData){
-//   router.post('/galleries', `https://stmarkfiles7.s3.amazonaws.com/${newData}`, function (req, res, next){
-//     console.log('loaded file');
-//   })
-//   }
+//- Create variable to hold the new AWS URL generated when a file is uploaded, then save the URL to the Galleries dB
 let newURL;
+
 router.route('/').post(upload.array('image'), function(req, res, next) {
-   newURL = req.files[0].key;
-   
-    addNewURL(keyName); 
-   console.log("newURL: ", newURL)
+  //  newURL = req.files[0].key;
+  //  console.log("newURL: ", newURL)
    return res.render('imageUpload', { title: "ImageUpload" });
   // return res.json('Successfully uploaded ' + JSON.stringify(req.files[0].location) + ' files!')
   });
 
 function addNewURL(name){
-  // Galleries.post(`stmarkfiles7.s3.amazonaws.com/${name}`),
-  // let newName = `stmarkfiles7.s3.amazonaws.com/${name}`;
-  db.Gallery.create({ imageURL: name }, function(res, err){
+   db.Gallery.create({ imageURL: name }, function(res, err){
     if(err) {
       return (err)
     } else {

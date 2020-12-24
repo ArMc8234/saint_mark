@@ -18,8 +18,8 @@
     $(document).on('click','#imageDelete', function(){
       console.log("Image Delete Selected!");
       //get the image's db ID
-      var thisId = $(this).val();
-      var thisURL = $(this).attr('attr');
+      const thisId = $(this).val();
+      const thisURL = $(this).attr('attr');
       console.log("Image ID:", thisId);
       console.log("Image URL:", thisURL);
       // Send delete request to database

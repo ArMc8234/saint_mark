@@ -11,8 +11,8 @@
   $(function(){
 
   //==================== Main Page Parallax Display ===================
-  var images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
-  var nextimage=0;
+  const images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
+  let nextimage=0;
   doSlideshow();
   
   function doSlideshow(){
@@ -49,26 +49,6 @@
           console.log("Getting Results!");
           console.table(data);
           for (let i = 0; i < data.length; i++) {
-            //create event row
-            // let date = new Date(data[i].date);
-            // let newDate = new Intl.DateTimeFormat('en-Us').format(date);
-            // console.log("time from database:", data[i].start);
-            // let startTime = new Date('2020-01-01T'+ data[i].start );
-            // let newStartTime = new Intl.DateTimeFormat('default', { 
-            //   hour: 'numeric',
-            //   minute: 'numeric',
-            // }).format(startTime); 
-            // console.log("newStartTime:", newStartTime);
-  
-            // // //Convert the date and time format for display
-            // let endTime = new Date('2020-01-01T'+ data[i].end );
-            // let newEndTime = new Intl.DateTimeFormat('default', { 
-            //   hour: 'numeric',
-            //   minute: 'numeric',
-            // }).format(endTime); 
-            // console.log("newStartTime:", newStartTime);
-            // console.log("newEndTime:", newEndTime);
-            
             //Create row for the event to add to the Saved Events table
             let announcement = (`
               <tr>
@@ -85,9 +65,9 @@
             
             //append new event
             html += announcement;
-            // $('#newEvents').append(announcement);
+            
           }
-          // console.log("HTML to add:", html)
+          //- Get the newEvents div and add the announcements to it
           document.querySelector('#newEvents').innerHTML = html;
         });
       }
@@ -111,7 +91,7 @@
   $(document).on('click','#eventSubmit', function (event) {
     event.preventDefault();
     //Capture form data in an object
-    var newEvent = {
+    const newEvent = {
       title: $('#title').val().trim(),
       date: $('#date').val().trim(),
       start: $('#start').val().trim(),
@@ -143,7 +123,7 @@
        $(document).on('click','#edit', function(){
         console.log("Edit Selected!");
         //get the event's db ID
-        var thisId = $(this).val();
+        const thisId = $(this).val();
         console.log("ThisID:", thisId);
         // create input fields for each field of the event
         $.ajax({
@@ -175,11 +155,11 @@
       // When user click's update button, update the specific note
   $(document).on("click", "#updater", function() {
     // Save the selected element
-    var selected = $(this);
-    // Make an AJAX POST request
-    // This uses the data-id of the update button,
-    // which is linked to the specific note title
-    // that the user clicked before
+    const selected = $(this);
+
+    /* Make an AJAX POST request. This uses the data-id of the update button,
+    which is linked to the specific note title that the user clicked before */
+
     console.log("Update this ID:", selected.attr("data-id"));
     $.ajax({
       type: "PUT",
@@ -207,7 +187,7 @@
       $(document).on('click','#delete', function(){
         console.log("Delete Selected!");
         //get the event's db ID
-        var thisId = $(this).val();
+        const thisId = $(this).val();
         console.log("ThisID:", thisId);
         // create input fields for each field of the event
         $.ajax({

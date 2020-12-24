@@ -1,18 +1,10 @@
-/*This page contains all of the javascript functions for all of the pages
-  1. Main page event display
-  2. Event page
-  3. Image upload */
+//- This page contains all of the javascript functions for all of the Event page
 
-  // import { createRequire } from 'module';
-  // const require = createRequire(import.meta.url);
-  // const fs = require('fs');
-
-  //$(Document).ready(function(){}) has been deprecated and replaced with the following...
-  $(function(){
+$(function(){
 
   //==================== Main Page Parallax Display ===================
-  var images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
-  var nextimage=0;
+  const images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
+  let nextimage=0;
   doSlideshow();
   
   function doSlideshow(){
@@ -22,8 +14,8 @@
       .fadeIn(5000,function(){
           setTimeout(doSlideshow,5000);
       });
-  }
-  //==================== Main Page Event Display ======================
+  };
+  //==================== Event Display ======================
       //MODAL DISPLAY
       //set  document to listen for <td> hyperlink click and call for the event description linked to the same ID as the event title"
       $(document).on('click', "#eventLink",  function(){
@@ -36,7 +28,7 @@
         $(".modal-body").append("<p>" + currentDescription + "</p>");
       }); 
 
-//==================== Event Page ===========================
+//==================== Event Edit Features ===========================
 
       //Get updated event data and display to the Saved Events table after a CRUD operation
       function getResults(){
@@ -91,7 +83,7 @@
   $(document).on('click','#eventSubmit', function (event) {
     event.preventDefault();
     //Capture form data in an object
-    var newEvent = {
+    const newEvent = {
       title: $('#title').val().trim(),
       date: $('#date').val().trim(),
       start: $('#start').val().trim(),
@@ -148,7 +140,7 @@
       // When user click's update button, update the specific note
   $(document).on("click", "#updater", function() {
     // Save the selected element
-    var selected = $(this);
+    const selected = $(this);
     // Make an AJAX POST request
     // This uses the data-id of the update button,
     // which is linked to the specific note title
@@ -178,7 +170,7 @@
       $(document).on('click','#delete', function(){
         console.log("Delete Selected!");
         //get the event's db ID
-        var thisId = $(this).val();
+        const thisId = $(this).val();
         console.log("ThisID:", thisId);
         // create input fields for each field of the event
         $.ajax({

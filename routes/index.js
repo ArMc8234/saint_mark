@@ -3,8 +3,6 @@ var router = express.Router();
 var apiRoutes = require('./api');
 const db = require('../models');
 const session = require('express-session');
-// const User = require('../models/user');
-// var announcements = require('../controllers/eventsController');
 const mid = require('../middleware');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
@@ -45,7 +43,7 @@ router.post('/login', function(req, res, next) {
   if (req.body.email && req.body.password) {
     db.User.authenticate(req.body.email, req.body.password, function (error, user) {
       if (error || !user) {
-        var err = new Error('Wrong email or password.');
+        let err = new Error('Wrong email or password.');
         err.status = 401;
         return next(err);
       }  else {
@@ -54,9 +52,8 @@ router.post('/login', function(req, res, next) {
       }
     });
   } else {
-    var err = new Error('Email and password are required.');
+    let err = new Error('Email and password are required.');
     err.status = 401;
-    // return next(err);
     return res.render('error', { error: next(err) });
   }
 });
@@ -75,14 +72,13 @@ router.post('/register', function(req, res, next) {
 
       // confirm that user typed same password twice
       if (req.body.password !== req.body.confirmPassword) {
-        var err = new Error('Passwords do not match.');
+        let err = new Error('Passwords do not match.');
         err.status = 400;
-        // return next(err);
         return res.render('error', { error: next(err) });
       }
 
       // create object with form input
-      var userData = {
+      const userData = {
         email: req.body.email,
         name: req.body.name,
         password: req.body.password
@@ -100,9 +96,8 @@ router.post('/register', function(req, res, next) {
       });
 
     } else {
-      var err = new Error('All fields required.');
+      let err = new Error('All fields required.');
       err.status = 400;
-      // return next(err);
       return res.render('error', { error: next(err) });
     }
 })
