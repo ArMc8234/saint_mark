@@ -24,8 +24,8 @@
       console.log("Image URL:", thisURL);
       // Send delete request to database
       //Delete image in the public folder
-      removeGalleryRef(thisId);
       removeFile(thisURL);
+      removeGalleryRef(thisId);
       location.reload();
     });
     
