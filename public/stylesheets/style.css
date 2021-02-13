@@ -50,10 +50,28 @@ body {
   min-width: 100%;
   min-height: 100%;
 } */
+#intro h1 {
+  /* color: #FDED2A; */
+  color: #183BF0;
+}
+#intro h3 {
+  /* color: #1258DC; */
+  color: #340933;
+}
+
+#introText {
+  text-align: left;
+  height: auto;
+  width: 100%;
+  margin: 0;
+  font-size: x-large;
+}
 
 #intro {
-  background-color:#D9E5F2;
-  height: 68vh;
+  /* background-color:#D9E5F2; */
+  /* background-color: #EA202C; */
+  background-color: #F1CF0A;
+  /* height: 68vh; */
   /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: center; 
@@ -96,60 +114,6 @@ body {
   justify-content: left;
 }
 
-
-@media screen and (max-width: 600px){
-  #intro {
-    float: left; 
-    display:block;
-    width: 100%; 
-    overflow: auto;
-  }
-  .imgDiv {
-    float: left;
-    display: block;
-    width: 100;
-    overflow: auto;
-  }
-  .intro-pic {
-    display: flex;
-    justify-content: center;
-    
-  }
-  
-  #introText {
-    float:none;
-    display:block;
-    width:100%;
-    overflow: auto;
-  }
-  #activities {
-    float:none;
-    display:block;
-    width:100%;
-    overflow: auto;
-  }
-
-  .role-description {
-    float:none;
-    display:block;
-    width:100%;
-    overflow: auto;
-  }
-  .staffDescription {
-    text-align: center;
-    float: left;
-    display:block;
-    width:100%;
-    overflow: auto;
-  }
-
-  #location {
-    float: right;
-    display: block;
-  }
-}
-
-
 .staffTitle {
   color: #2E1017;
 }
@@ -158,11 +122,12 @@ body {
   float: left;
   border: #396AA2 solid;
   border-width: 1em;
-  margin-left: 15px;
+  border-radius: 10px;
+  margin: 15%;
   box-shadow:  10px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   height: auto;
   width: 100%;
-  max-width: 200px;
+  max-width: 280px;
 }
 
 a {
@@ -208,4 +173,58 @@ tr:nth-child(even){
 th {
   background-color: #396AA2;
   font-weight: bold;
+}
+
+
+@media screen and (max-width: 600px){
+  #intro {
+    float: left; 
+    display:block;
+    width: 100%; 
+    overflow: auto;
+  }
+  .imgDiv {
+    float: left;
+    display: block;
+    width: 100;
+    overflow: auto;
+  }
+  .intro-pic {
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  
+  #introText {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+  #activities {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+
+  .role-description {
+    float:none;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+  .staffDescription {
+    text-align: center;
+    float: left;
+    display:block;
+    width:100%;
+    overflow: auto;
+  }
+
+  #location {
+    float: right;
+    display: block;
+  }
 }

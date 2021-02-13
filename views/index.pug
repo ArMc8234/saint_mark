@@ -10,33 +10,56 @@ block content
       //-   source(src='https://media.giphy.com/media/QmDiNBWHiPJSeae5Zo/giphy.mp4' type='video/mp4')
 
   #intro
-    br
-    h1(style="color: #396AA2") Join Us
-    h3(style="color: #396AA2") No Matter Who You Are Or Where You Are On Life's Journey, You're Welcome HERE!!!
-    br
     .row
-      #imgDiv.col-md-3.offset-2
+      .col-md-12
+        br
+        h1 Join Us
+        h3 No Matter Who You Are Or Where You Are On Life's Journey, You're Welcome HERE!!!
+        br
+    .row
+      #imgDiv.col-md-4.offset-1
         img.intro-pic(src="/images/uccLogo.jpg")
-      #introText.col-md-4
-        h5 Welcome!  St. Mark United Church of Christ extends an extravagant welcome to all people!  It is our desire to offer the love of Christ and the fellowship of Christ’s people to souls in need of sanctuary — a place of safety and care.  We hope that you will join us during this time of pandemic for our virtual worshipservice on Facebook live.  Join us each Sunday morning at 11:15 am at St. Mark Berkley  Norfolk, Va.  We look forward to meeting you there!  
+      #introTextFrame.col-md-4.offset-1
+        div#introText
+          p Welcome!  St. Mark United Church of Christ extends an extravagant welcome to all people!  It is our desire to offer the love of Christ and the fellowship of Christ’s people to souls in need of sanctuary — a place of safety and care.  We hope that you will join us during this time of pandemic for our virtual worship service on Facebook live.  Join us each Sunday morning at 11:15am at St. Mark UCC Berkley Norfolk, VA.  We look forward to meeting you there!
+     
   #activities
     #activitiesTable
       if {events}
-        h2 Announcements
-        table
-          tr
-            th Date
-            th Start Time
-            th End Time
-            th Title
-          each event in events
-            tr
-              td= dayjs(event.date).format("M/D/YY")
-              td= dayjs('2020-01-01' + event.start).format("h:mm A")
-              td= dayjs('2020-01-01' + event.end).format("h:mm A")
-              td
-               a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title}
-              
+        h1(strong) Weekly Events
+        h3 Sunday Service at 11:00am
+        h4 521 Obendorfer Road Norfolk, VA
+        h5 
+          a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX") Facebook Live 
+          span or Conference Call (425) 436-6368  Access Code 284469
+        br
+        br  
+        h3 Wednesday Bible Study at 7:00pm
+        h4 521 Obendorfer Road Norfolk, VA
+        h5 
+          a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX") Facebook Live 
+          span or Conference Call (425) 436-6368  Access Code 284469
+        br
+        br
+        h1(strong) Special Events
+         
+        //- table
+        //-   tr
+        //-     th Date
+        //-     th Start Time
+        //-     th End Time
+        //-     th Title
+        //-   each event in events
+        //-     tr
+        //-       td= dayjs(event.date).format("M/D/YY")
+        //-       td= dayjs('2020-01-01' + event.start).format("h:mm A")
+        //-       td= dayjs('2020-01-01' + event.end).format("h:mm A")
+        //-       td
+        //-        a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title}
+        each event in events
+          h4  
+            a#eventLink(href="#" data-toggle="modal" data-target="#exampleModal" data-attr= (event.description)) #{event.title} 
+            span at #{dayjs('2020-01-01' + event.start).format("h:mm A")}  
 
     
   #location
@@ -47,6 +70,7 @@ block content
     br
     h5 521 Obendorfer Rd Norfolk, VA
     h5 (757) 545-5527
+    h5 stmarkuccnorfolk@gmail.com
     a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX")
       i.fab.fa-facebook-square.fa-3x(style="color: #2E1017")
        
