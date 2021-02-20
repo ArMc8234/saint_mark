@@ -2,32 +2,24 @@ extends layout
 
 
 block content
-  .parallax
-    div.containParallax
-      h1= title
+  //- .parallax
+  //-   div.containParallax
+  //-     h1= title
       
   //- Consider iterating the staff rows from a JSON object  
   .row.staffDescription
-    .col-md-3.offset-md-2.staffPhotoDiv
-      br
-      img.staff-pic(src="/images/pastor.webp" height="200" width="180")
+    //- .col-md-3.offset-md-2.staffPhotoDiv
+    //-   br
+    //-   img.staff-pic(src="/images/pastor.webp")
 
-    .col-md-5.role-description
-      h1.staffTitle Pastor
+    .col-md-6.offset-3.role-description
+      h1.text-center#staffTitle Meet the Pastor
+      img.staff-pic(src="/images/pastor.webp")
       h3.staffName Rev. Dr. Linda D.T. Clark, LCSW
       h6 Rev. Dr. Linda Clark has served as the Interim Pastor of St. Mark United Church since July, 2020.  Pastor Clark is a daughter of St. Mark UCC and feels honored to stand in the gap and serve her home church during this time of transition.  Pastor Clark has been married to Robert A. Clark, Jr. for over forty years.  Together they have two adult daughters, four grandchildren and two sons-in-law. Pastor Clark holds a Bachelor’s degree in sociology; a Master of  Social Work;a Master of Divinity and a Doctor of Ministry degree.  She was the former Senior Pastor of Union United Church of Christ in Norfolk, Virginia for thirteen and a half years.  Pastor Clark has worked over 30 years as a  psychotherapist.  Her clear call from God is to “feed my sheep.”  She has purposed to do this both through her call to the pastoral ministry and as a psychotherapist.         
 
     
-  #location
-    br
-    h2 Location
-    iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3193.595511847016!2d-76.2754339!3d36.8282115!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89baa2b20d150519%3A0xfefbb5185b236e03!2s521%20Obendorfer%20Rd%2C%20Norfolk%2C%20VA%2023523!5e0!3m2!1sen!2sus!4v1607902613925!5m2!1sen!2sus" width="45%" height="40%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0")
-    br
-    h5 521 Obendorfer Rd Norfolk, VA
-    h5 (757) 545-5527
-    h5 stmarkuccnorfolk@gmail.com
-    a(href="https://www.facebook.com/St-Mark-UCC-Berkley-Norfolk-VA-106160771087217/?epa=SEARCH_BOX")
-      i.fab.fa-facebook-square.fa-3x(style="color: #2E1017")
+  
        
   script(src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous")
