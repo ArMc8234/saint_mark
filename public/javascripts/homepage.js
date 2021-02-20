@@ -11,7 +11,7 @@
   $(function(){
 
   //==================== Main Page Parallax Display ===================
-  const images=new Array('../images/StMarkBldg4.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
+  const images=new Array('../images/NewChurchImg.jpg','../images/smiling_group.jpg','../images/pexels-photo-4622580.jpeg');
   let nextimage=0;
   doSlideshow();
   
