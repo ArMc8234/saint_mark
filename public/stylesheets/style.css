@@ -169,6 +169,13 @@ a {
   
 }
 
+#ministriesList li{
+  /* display: inline; */
+  list-style-type: none;
+  font-size: x-large;
+  text-align: center;
+}
+
 table{
   width: 50%;
   margin: 50px auto;
