@@ -126,7 +126,8 @@ body {
 
 .role-description {
   justify-content: left;
-  background-color: #ffffff;
+  background: #ffffff;
+  opacity: 0.9;
   /* border-style: solid;
   border-color: #2E1017; */
   border-radius: 10px;
@@ -178,11 +179,17 @@ a {
 
 #contentContainer {
   /* background-color: #f0ead6; */
-  background-image: radial-gradient(#ffffff, #f0ead6);
+  /* background: linear-gradient(90deg,#ffffff, #f0ead6, #00B7FF), url("/images/monarch-butterfly-seeds.jpg") no-repeat; */
+  background: linear-gradient(90deg,#ffffff, #7ab7d3, #b35ac3), url("/images/NewChurchImg.jpg");
+  background-blend-mode: multiply;
+  background-size: cover;
+  height: 100vh;
+  
 }
 
 #missionText {
   background-color: #ffffff;
+  opacity: 0.8;
   /* border-style: solid;
   border-color: #2E1017; */
   border-radius: 10px;
@@ -192,6 +199,7 @@ a {
 }
 #ministriesText {
   background-color: #ffffff;
+  opacity: 0.8;
   /* border-style: solid;
   border-color: #2E1017; */
   border-radius: 10px;
