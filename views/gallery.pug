@@ -10,7 +10,7 @@ block content
                  .row
                     .col-sm-12
                       a(href=(`https://stmarkfiles7.s3.amazonaws.com/${(gallery.imageURL)}`) data-lightbox="gallery-set")
-                        img(src=(`https://stmarkfiles7.s3.amazonaws.com/${(gallery.imageURL)}`) height="250" width="250")
+                        img(src=(`https://stmarkfiles7.s3.amazonaws.com/${(gallery.imageURL)}`) height="250" width="250" style="border-radius:10px")
 
                       //- Add button to allow registered users to delete images
                       if currentUser
