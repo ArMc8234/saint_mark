@@ -114,17 +114,21 @@ router.get('/', function(req, res, next) {
      }).catch(err => console.log(err));
 });
 
-// GET /staff
+// GET /Pastor bio
 router.get('/pastor', function(req, res, next) {
   return res.render('pastor', { title: "Meet St. Mark's Pastor" });
 });
-// GET /staff
+// GET /Ministries
 router.get('/ministries', function(req, res, next) {
   return res.render('ministries', { title: "Ministries" });
 });
-// GET /staff
+// GET /Church Mission
 router.get('/mission', function(req, res, next) {
   return res.render('mission', { title: "Mission" });
+});
+// GET /History
+router.get('/history', function(req, res, next) {
+  return res.render('history', { title: "History" });
 });
 //GET the Event form page
 // router.get('/events', function(req, res, next) {

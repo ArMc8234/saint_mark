@@ -184,6 +184,7 @@ a {
   background-blend-mode: multiply;
   background-size: cover;
   height: 100vh;
+  overflow: auto;
   
 }
 
@@ -213,6 +214,10 @@ a {
   list-style-type: none;
   font-size: x-large;
   text-align: center;
+}
+#historyText {
+ color: #ffffff;
+ margin: 10 auto;
 }
 
 table{
