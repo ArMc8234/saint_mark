@@ -1,6 +1,7 @@
 body {
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
   /* background-color: beige !important; */
 
 }
@@ -119,20 +120,23 @@ body {
   height: auto;
   width: 33%;
   /* max-width: 622px; */
-  box-shadow: 0 10px 20px;
-  margin: 5px;
-  float: left;
+  /* box-shadow: 0 10px 20px; */
+  margin: 5px auto;
+  /* float: left; */
+  display:flex;
+  justify-content: center;
 }
 
 .role-description {
   justify-content: left;
-  background: #ffffff;
-  opacity: 0.9;
+  color: #2E1017;
+  /* background: #ffffff; */
+  /* opacity: 0.9; */
   /* border-style: solid;
   border-color: #2E1017; */
-  border-radius: 10px;
-  margin: 15% auto;
-  box-shadow: 0px 10px 20px;
+  /* border-radius: 10px; */
+  margin: 10% auto;
+  /* box-shadow: 0px 10px 20px; */
 }
 
 .staffTitle {
@@ -185,27 +189,61 @@ a {
   background-size: cover;
   height: 100vh;
   overflow: auto;
+  padding: 20px 50px;
   
 }
-
+#pastorContainer {
+  /* background-color: #f0ead6; */
+  /* background: linear-gradient(90deg,#ffffff, #f0ead6, #00B7FF), url("/images/monarch-butterfly-seeds.jpg") no-repeat; */
+  background: url("/images/shutterstock_1668394099.jpg");
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  height: 100vh;
+  overflow: auto;
+  /* padding: 20px 50px; */
+}
+#missionContainer {
+  /* background-color: #f0ead6; */
+  /* background: linear-gradient(90deg,#ffffff, #f0ead6, #00B7FF), url("/images/monarch-butterfly-seeds.jpg") no-repeat; */
+  background:  url("/images/shutterstock_757721221.jpg");
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  height: 100vh;
+  overflow: auto;
+  padding: 20px 50px;
+}
 #missionText {
-  background-color: #ffffff;
-  opacity: 0.8;
+  /* background-color: #ffffff; */
+  /* opacity: 0.8; */
   /* border-style: solid;
   border-color: #2E1017; */
-  border-radius: 10px;
-  margin: 15% auto;
-  box-shadow: 0px 10px 20px;
+  /* border-radius: 10px; */
+  margin: 10% auto;
+  /* box-shadow: 0px 10px 20px; */
 
 }
+
+
+#ministriesContainer {
+  /* background-color: #f0ead6; */
+  /* background: linear-gradient(90deg,#ffffff, #f0ead6, #00B7FF), url("/images/monarch-butterfly-seeds.jpg") no-repeat; */
+  background:  url("/images/shutterstock_177070154.jpg");
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  height: 100vh;
+  overflow: auto;
+  padding: 20px 50px;
+}
+
 #ministriesText {
-  background-color: #ffffff;
-  opacity: 0.8;
+  /* background-color: #ffffff;
+  opacity: 0.8; */
   /* border-style: solid;
   border-color: #2E1017; */
-  border-radius: 10px;
-  margin: 15% auto;
-  box-shadow: 0px 10px 20px;
+  color: #ffffff;
+  /* border-radius: 10px; */
+  margin: 10% auto;
+  /* box-shadow: 0px 10px 20px; */
 
 }
 
@@ -215,9 +253,10 @@ a {
   font-size: x-large;
   text-align: center;
 }
-#historyText {
+.historyText {
  color: #ffffff;
- margin: 10 auto;
+ /* margin: 10 auto; */
+ justify-content: center;
 }
 
 table{
