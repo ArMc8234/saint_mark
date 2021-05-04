@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 // const model = require('./models');
@@ -14,12 +15,17 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// To protect against injection attacks by removing prohibited data
+app.use(mongoSanitize());
+
 //The mongoose connection and session set up needed to be written before the other app settings in order to be read and to define req.session.
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/stMark", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
+
+  
 // use sessions for tracking logins. The session data is in mongo instead of RAM. It keeps site from crashing.
 app.use(session({
   secret: 'luck be on my side!',
