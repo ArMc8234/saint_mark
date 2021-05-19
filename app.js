@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const RateLimit = require('express-rate-limit');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -17,6 +18,17 @@ const app = express();
 
 // To protect against injection attacks by removing prohibited data
 app.use(mongoSanitize());
+
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit');
+var limiter = new RateLimit({
+  windowMs: 1*60*1000, // 1 minute
+  max: 5
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
+
 
 //The mongoose connection and session set up needed to be written before the other app settings in order to be read and to define req.session.
 mongoose
