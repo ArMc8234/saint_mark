@@ -40,7 +40,7 @@ mongoose
 
   
 // use sessions for tracking logins. The session data is in mongo instead of RAM. It keeps site from crashing.
-app.use(csrf({ cookie: true }));
+
 app.use(session({
   secret: 'luck be on my side!',
   resave: true,
@@ -70,6 +70,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(csrf({ cookie: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
