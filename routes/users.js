@@ -10,7 +10,7 @@ const limiter = new RateLimit({
 });
 
 // apply rate limiter to all requests
-router.use(limiter);
+express.use(limiter);
 
 
 /* GET users listing. */
