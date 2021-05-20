@@ -3,6 +3,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 const mongoSanitize = require('express-mongo-sanitize');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -39,6 +40,7 @@ mongoose
 
   
 // use sessions for tracking logins. The session data is in mongo instead of RAM. It keeps site from crashing.
+app.use(csrf({ cookie: true }));
 app.use(session({
   secret: 'luck be on my side!',
   resave: true,
