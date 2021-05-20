@@ -1,11 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var apiRoutes = require('./api');
+const express = require('express');
+const router = express.Router();
+const apiRoutes = require('./api');
 const db = require('../models');
 const session = require('express-session');
 const mid = require('../middleware');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
+
+
 
 // GET /profile
 router.get('/profile', mid.requiresLogin, function(req, res, next) {

@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const RateLimit = require('express-rate-limit');
-
+const db = require('../models');
+const mid = require('../middleware')
 // set up rate limiter: maximum of five requests per minute
-const RateLimit = require('express-rate-limit');
-const limiter = new RateLimit({
-  windowMs: 1*60*1000, // 1 minute
-  max: 5
-});
 
-// apply rate limiter to all requests
-express.use(limiter);
 
 
 /* GET users listing. */
@@ -18,29 +11,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-// module.exports = router;
 
-
-
-const express = require('express');
-const router = express.Router();
-// const apiRoutes = require('./api');
-const db = require('../models');
-// const User = require('../models/user');
-// const announcements = require('../controllers/eventsController');
-const mid = require('../middleware');
-
-// GET /profile
-// router.get('/profile', mid.requiresLogin, function(req, res, next) {
-//   db.User.findById(req.session.userId)
-//       .exec(function (error, user) {
-//         if (error) {
-//           return next(error);
-//         } else {
-//           return res.render('profile', { title: 'Profile', name: user.name });
-//         }
-//       });
-// });
 
 // GET /logout
 router.get('/logout', function(req, res, next) {

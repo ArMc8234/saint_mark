@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
-const RateLimit = require('express-rate-limit');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -12,7 +12,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+// const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -20,14 +20,14 @@ const app = express();
 app.use(mongoSanitize());
 
 // set up rate limiter: maximum of five requests per minute
-var RateLimit = require('express-rate-limit');
-var limiter = new RateLimit({
-  windowMs: 1*60*1000, // 1 minute
-  max: 5
+
+const apiLimiter = rateLimit({
+  windowMs: 15*60*1000, // 1 minute
+  max: 100
 });
 
 // apply rate limiter to all requests
-app.use(limiter);
+app.use("/api/", apiLimiter);
 
 
 //The mongoose connection and session set up needed to be written before the other app settings in order to be read and to define req.session.
