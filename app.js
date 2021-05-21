@@ -20,15 +20,19 @@ const app = express();
 // To protect against injection attacks by removing prohibited data
 app.use(mongoSanitize());
 
+// Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+// see https://expressjs.com/en/guide/behind-proxies.html
+app.set('trust proxy', 1);
+
 // set up rate limiter: maximum of five requests per minute
 
-const apiLimiter = rateLimit({
+const limiter = rateLimit({
   windowMs: 15*60*1000, // 1 minute
   max: 100
 });
 
 // apply rate limiter to all requests
-app.use("/api/", apiLimiter);
+app.use(limiter);
 
 
 //The mongoose connection and session set up needed to be written before the other app settings in order to be read and to define req.session.
