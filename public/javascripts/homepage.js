@@ -32,8 +32,8 @@
       
         $(".modal-title").empty();
         $(".modal-body").empty();
-        $(".modal-title").append("<h4>" + currentTitle + "</h4>");
-        $(".modal-body").append("<p>" + currentDescription + "</p>");
+        $(".modal-title").append(`<h4> ${currentTitle} </h4>`);
+        $(".modal-body").append(`<p> ${currentDescription} </p>`);
       }); 
 
 //==================== Event Page ===========================
@@ -41,7 +41,7 @@
       //Get updated event data and display to the Saved Events table after a CRUD operation
       function getResults(){
         let html = "";
-        $('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
+        $.find('#newEvents').append('<tr><th> Date </th><th> Start Time </th><th> End Time <th> Title </th><th></th>');
         $.ajax({
           method: "GET",
           url: "api/events",
@@ -146,7 +146,7 @@
           $('#start').val(data.start);
           $('#end').val(data.end);
           $('#description').val(data.description);
-          $('#action-button').html("<button id='updater' data-id='" + data._id + "'>Update</button>")
+          $.find('#action-button').html("<button id='updater' data-id='" + data._id + "'>Update</button>")
         });
       });
 
