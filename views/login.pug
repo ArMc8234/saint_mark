@@ -7,6 +7,7 @@ block content
         h1.display-4.m-b-2 Log In
         form(method='POST' action='/login')
           div.form-group
+            input.form-control(type='hidden' name='_csrf' value=(csrfToken))
             label(for='email') Email
             input.form-control(type='text' id='email' placeholder='email' name='email')
           div.form-group

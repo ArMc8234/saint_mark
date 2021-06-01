@@ -8,6 +8,7 @@ block content
       // register form
       form(method='POST' action='/register')
         div.form-group
+          input.form-control(type='hidden' name='_csrf' value=(csrfToken))
           label(for='name') Name:
           input#name.form-control(type='text', placeholder='first and last' name='name')
         div.form-group

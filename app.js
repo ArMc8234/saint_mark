@@ -3,17 +3,15 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
 const mongoSanitize = require('express-mongo-sanitize');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-// const model = require('./models');
 const aws = require('aws-sdk');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
-// const usersRouter = require('./routes/users');
+
 
 const app = express();
 
@@ -54,6 +52,8 @@ app.use(session({
   })
 }));
 
+// const csrfProtection = csrf();
+
 // make user ID available in templates
 app.use(function (req, res, next) {
   res.locals.currentUser = req.session.userId;
@@ -74,7 +74,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(csrf({ cookie: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

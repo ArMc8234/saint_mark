@@ -6,7 +6,9 @@ const session = require('express-session');
 const mid = require('../middleware');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
+const csrf = require('csurf');
 
+const csrfProtection = csrf();
 
 
 // GET /profile
@@ -36,12 +38,12 @@ router.get('/logout', function(req, res, next) {
 });
 
 // GET /login
-router.get('/login', mid.loggedOut, function(req, res, next) {
-  return res.render('login', { title: 'Log In'});
+router.get('/login', csrfProtection, mid.loggedOut, function(req, res, next) {
+  return res.render('login', { title: 'Log In' , csrfToken: req.csrfToken()});
 });
 
 // POST /login
-router.post('/login', function(req, res, next) {
+router.post('/login',  function(req, res, next) {
   if (req.body.email && req.body.password) {
     db.User.authenticate(req.body.email, req.body.password, function (error, user) {
       if (error || !user) {
@@ -61,16 +63,17 @@ router.post('/login', function(req, res, next) {
 });
 
 // GET /register
-router.get('/register', mid.loggedOut, function(req, res, next) {
-  return res.render('register', { title: 'Sign Up' });
+router.get('/register', csrfProtection, mid.loggedOut, function(req, res, next) {
+  return res.render('register', { title: 'Sign Up', csrfToken: req.csrfToken() });
 });
 
 // POST /register
-router.post('/register', function(req, res, next) {
+router.post('/register',  function(req, res, next) {
   if (req.body.email &&
     req.body.name &&
     req.body.password &&
-    req.body.confirmPassword) {
+    req.body.confirmPassword
+    ) {
 
       // confirm that user typed same password twice
       if (req.body.password !== req.body.confirmPassword) {
