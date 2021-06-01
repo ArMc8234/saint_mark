@@ -47,7 +47,7 @@ mongoose
 const csrfProtection = csrf();
 
 app.use(session({
-  secret: 'luck be on my side!',
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
   store: new MongoStore({
