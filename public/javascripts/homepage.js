@@ -27,13 +27,17 @@
       //MODAL DISPLAY
       //set  document to listen for <td> hyperlink click and call for the event description linked to the same ID as the event title"
       $(document).on('click', "#eventLink",  function(){
-        let currentTitle = $(this).html();
-        let currentDescription = $(this).attr('data-attr');
+        let titleHTML = "";
+        let descriptionHTML = "";
+        let currentTitle = `<h4> ${$(this).html()} </h4>`;
+        let currentDescription = `<p> ${$(this).attr('data-attr')} </p>`;
+        titleHTML += currentTitle;
+        descriptionHTML += currentDescription;
       
         $(".modal-title").empty();
         $(".modal-body").empty();
-        $(".modal-title").append(`<h4> ${currentTitle} </h4>`);
-        $(".modal-body").append(`<p> ${currentDescription} </p>`);
+        $(".modal-title").html(titleHTML);
+        $(".modal-body").html(descriptionHTML);
       }); 
 
 //==================== Event Page ===========================
