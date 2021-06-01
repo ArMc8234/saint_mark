@@ -3,6 +3,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 const mongoSanitize = require('express-mongo-sanitize');
 const logger = require('morgan');
 const mongoose = require('mongoose');
@@ -42,6 +43,8 @@ mongoose
 
   
 // use sessions for tracking logins. The session data is in mongo instead of RAM. It keeps site from crashing.
+// 
+const csrfProtection = csrf();
 
 app.use(session({
   secret: 'luck be on my side!',
@@ -52,7 +55,6 @@ app.use(session({
   })
 }));
 
-// const csrfProtection = csrf();
 
 // make user ID available in templates
 app.use(function (req, res, next) {
@@ -75,7 +77,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(csrf({ cookie: false }));
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
