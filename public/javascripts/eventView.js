@@ -24,8 +24,8 @@ $(function(){
       
         $(".modal-title").empty();
         $(".modal-body").empty();
-        $(".modal-title").append("<h4>" + currentTitle + "</h4>");
-        $(".modal-body").append("<p>" + currentDescription + "</p>");
+        $(".modal-title").append($('<h4>', {text: currentTitle}));
+        $(".modal-body").append($('<p>', {text: currentDescription}));
       }); 
 
 //==================== Event Edit Features ===========================
