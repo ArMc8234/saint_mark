@@ -135,6 +135,10 @@ router.get('/mission', function(req, res, next) {
 router.get('/history', function(req, res, next) {
   return res.render('history', { title: "History" });
 });
+// GET /Give
+router.get('/give', function(req, res, next) {
+  return res.render('give', { title: "Give" });
+});
 //GET the Event form page
 // router.get('/events', function(req, res, next) {
 //   db.Event.find({})
