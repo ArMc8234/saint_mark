@@ -3,33 +3,36 @@ extends layout
 block content
       .container-fluid#contentContainer
           .row
-            .col-md-12.historyText
-                  h3(style="text-align: center") Tithes and Offerings
+            .col-md-12.historyText(style="text-align: center")
+                  h1(style="margin: 100 auto") Tithes and Offerings
                   br
+                  h3 God Loves A Cheerful Giver!
+                  br
+                  p You can give using one of our many platforms.
           .row
             .col-md-8.offset-2.text-center.historyText
                   p 
                   br
                   .row
-                        .col-sm-4(style="background-size: 200px 200px")
+                        .col-sm-4
                               h4 Envelope
                               //- i.fas.fa-envelope.fa-10x
                               //- <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 190 190" ;" xml:space="preserve"><g><path style="fill:#1D1D1B;" d="M160.746,24.61H23.254C10.432,24.61,0,35.042,0,47.864v88.271c0,12.822,10.432,23.254,23.254,23.254 h137.492c12.822,0,23.254-10.432,23.254-23.254V47.864C184,35.042,173.568,24.61,160.746,24.61z M157.113,39.61L92,89.909 L26.887,39.61H157.113z M160.746,144.39H23.254c-4.551,0-8.254-3.703-8.254-8.254V49.382l72.415,55.94 c1.35,1.043,2.968,1.564,4.585,1.564s3.235-0.521,4.585-1.564L169,49.382v86.753C169,140.687,165.297,144.39,160.746,144.39z"/></g></svg>
-                              img(style="background-size: 200px 200px; height: 200px; width: 200px" src="/images/emailThree.png" alt="envelope icon")
+                              img(style="height: 200px; width: 200px" src="/images/emailThree.png" alt="envelope icon")
                               p This option is available when attending in person.
 
-                        .col-sm-4(style="background-size: 200px 200px")
+                        .col-sm-4
                               h4 CashApp
                               //- <svg xmlns="http://www.w3.org/2000/svg" class="app-icon" viewBox="0 0 80 80"><g fill-rule="nonzero" fill="#FFF"><path d="M41.7 0c6.4 0 9.6 0 13.1 1.1a13.6 13.6 0 0 1 8.1 8.1C64 12.7 64 15.9 64 22.31v19.37c0 6.42 0 9.64-1.1 13.1a13.6 13.6 0 0 1-8.1 8.1C51.3 64 48.1 64 41.7 64H22.3c-6.42 0-9.64 0-13.1-1.1a13.6 13.6 0 0 1-8.1-8.1C0 51.3 0 48.1 0 41.69V22.3c0-6.42 0-9.64 1.1-13.1a13.6 13.6 0 0 1 8.1-8.1C12.7 0 15.9 0 22.3 0h19.4z" fill="#00D632"/><path d="M42.47 23.8c.5.5 1.33.5 1.8-.0l2.5-2.6c.53-.5.5-1.4-.06-1.94a19.73 19.73 0 0 0-6.72-3.84l.79-3.8c.17-.83-.45-1.61-1.28-1.61h-4.84a1.32 1.32 0 0 0-1.28 1.06l-.7 3.38c-6.44.33-11.9 3.6-11.9 10.3 0 5.8 4.51 8.29 9.28 10 4.51 1.72 6.9 2.36 6.9 4.78 0 2.49-2.38 3.95-5.9 3.95-3.2 0-6.56-1.07-9.16-3.68a1.3 1.3 0 0 0-1.84-.0l-2.7 2.7a1.36 1.36 0 0 0 .0 1.92c2.1 2.07 4.76 3.57 7.792 4.4l-.74 3.57c-.17.83.44 1.6 1.27 1.61l4.85.04a1.32 1.32 0 0 0 1.3-1.06l.7-3.39C40.28 49.07 45 44.8 45 38.57c0-5.74-4.7-8.16-10.4-10.13-3.26-1.21-6.08-2.04-6.08-4.53 0-2.42 2.63-3.38 5.27-3.38 3.36 0 6.59 1.39 8.7 3.29z" fill="#FFF"/></g></svg>
-                              img(style="background-size: 200px 200px; height: 200px; width: 200px" src="/images/cash-app-seeklogo.com.png" alt="cash-app icon")
+                              img(style="height: 200px; width: 200px" src="/images/cash-app-seeklogo.com.png" alt="cash-app icon")
                               p Enter code "####"
                             
-                        .col-sm-4(style="background-size: 200px 200px")
+                        .col-sm-4
                               h4 EasyTithe
                               //- img(src="images/easyTitheIcon.webp")
                               //- <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="180.000000pt" height="180.000000pt" viewBox="0 0 180 180" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,180) scale(0.100000,-0.100000)" fill="#000000" stroke="none"><path d="M83 1793 c-36 -7 -72 -51 -78 -96 -3 -23 -5 -397 -3 -832 3 -855 1 -817 57 -847 36 -20 1647 -19 1683 1 55 29 53 -1 53 881 0 655 -3 822 -13 841 -30 56 10 54 -867 55 -445 1 -820 0 -832 -3z m817 -253 l0 -40 40 0 c29 0 40 -4 40 -15 0 -11 -11 -15 -40 -15 l-40 0 1 -62 1 -63 119 -110 c315 -292 325 -302 309 -318 -13 -13 -39 7 -225 184 -116 109 -218 199 -227 199 -9 0 -112 -89 -229 -197 -116 -109 -216 -198 -222 -198 -6 0 -12 5 -14 11 -3 10 175 185 385 379 61 57 62 58 62 111 l0 53 -37 3 c-27 2 -39 8 -41 21 -3 14 4 17 37 17 l41 0 0 40 c0 33 3 40 20 40 17 0 20 -7 20 -40z m33 -328 c9 -4 79 -66 154 -137 178 -169 175 -163 171 -390 l-3 -174 -35 -36 c-19 -19 -50 -40 -70 -45 -19 -5 -145 -10 -280 -10 -220 0 -249 2 -287 20 -76 34 -83 57 -83 266 0 173 1 183 23 215 33 48 252 260 290 282 32 17 87 21 120 9z"/><path d="M845 1099 c-106 -30 -137 -172 -55 -250 48 -46 86 -54 153 -31 40 13 53 22 55 39 l3 23 -43 -25 c-24 -14 -53 -25 -66 -25 -31 0 -77 25 -96 52 -15
                               //- 21 -13 23 82 81 126 77 131 81 109 105 -10 10 -35 24 -56 30 -43 13 -45 14 -86 1z m90 -31 c14 -6 25 -14 25 -17 0 -4 -26 -22 -57 -41 -32 -19 -75 -46 -97 -59 l-39 -24 6 43 c11 83 90 131 162 98z"/><path d="M730 605 l0 -145 65 0 65 0 0 145 0 145 -65 0 -65 0 0 -145z"/><path d="M900 605 l0 -145 60 0 60 0 0 145 0 145 -60 0 -60 0 0 -145z"/></g></svg>
-                              img(style="background-size: 200px 200px; height: 200px; width: 200px" src="/images/easyTitheIcon.png" alt="easytithe icon")                             
+                              img(style="height: 200px; width: 200px" src="/images/easyTitheIcon.png" alt="easytithe icon")                             
                               p  
                                 a(href='https://app.easytithe.com/app/giving/stmarkuccberkley' target="_blank") Click here!
                 
